@@ -33,7 +33,7 @@ def ball(cx, cy, r, fill=OPTIC, seam=NAVY, sw=None):
 
 
 def court_svg(cls='court', title=None, ball_on=True):
-    """Portrait perspective court, viewBox 0 0 480 560."""
+    """Portrait perspective court, viewBox 0 0 480 600."""
     out = _poly([(-30, -14), (30, -14), (30, 92), (-30, 92)])
     surf = _poly([(-18, 0), (18, 0), (18, 78), (-18, 78)])
     L = []
@@ -73,13 +73,13 @@ def court_svg(cls='court', title=None, ball_on=True):
                f'<g class="ball">{ball(pts[0][0], pts[0][1], 26)}</g>')
     t = f'<title>{title}</title>' if title else ''
     role = 'role="img" aria-label="' + title + '"' if title else 'aria-hidden="true" focusable="false"'
-    return (f'<svg class="{cls}" viewBox="0 0 480 560" {role} preserveAspectRatio="xMidYMid slice">{t}'
+    return (f'<svg class="{cls}" viewBox="0 0 480 600" {role} preserveAspectRatio="xMidYMid slice">{t}'
             f'<defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16388f"/>'
             f'<stop offset="1" stop-color="{COURT}"/></linearGradient>'
             f'<radialGradient id="glow" cx=".5" cy=".95" r=".7"><stop offset="0" stop-color="#ffffff" stop-opacity=".10"/>'
             f'<stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient></defs>'
-            f'<rect width="480" height="560" fill="{COURT_OUT}"/><path d="{out}" fill="{COURT_OUT}"/>'
-            f'<path d="{surf}" fill="url(#cg)"/><rect width="480" height="560" fill="url(#glow)"/>'
+            f'<rect width="480" height="600" fill="{COURT_OUT}"/><path d="{out}" fill="{COURT_OUT}"/>'
+            f'<path d="{surf}" fill="url(#cg)"/><rect width="480" height="600" fill="url(#glow)"/>'
             f'<g class="lines">{"".join(L)}</g><g class="net">{net}</g>{art}</svg>')
 
 

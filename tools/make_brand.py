@@ -30,7 +30,7 @@ def og_html():
     return f'''<!doctype html><html><head><meta charset="utf-8"><style>{FONTS}
 html,body{{margin:0;width:1200px;height:630px;overflow:hidden}}
 body{{background:radial-gradient(90% 90% at 100% 0%,#18306f 0%,{NAVY} 60%);color:{WHITE};font-family:Inter,sans-serif;position:relative}}
-.art{{position:absolute;right:0;top:0;width:560px;height:630px;overflow:hidden}}
+.art{{position:absolute;right:0;top:0;width:580px;height:630px;overflow:hidden}}
 .art svg{{width:100%;height:100%}}
 .art::after{{content:"";position:absolute;inset:0;background:linear-gradient(90deg,{NAVY} 0%,rgba(10,17,40,.75) 22%,rgba(10,17,40,0) 55%)}}
 .court .ln{{fill:none;stroke:#fff;stroke-width:2.2;opacity:.92}}.court .mesh{{stroke:#fff;stroke-opacity:.16}}

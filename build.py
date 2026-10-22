@@ -120,7 +120,7 @@ def person_node():
         'hasCredential': {'@type': 'EducationalOccupationalCredential', 'name': 'PTR Certified Tennis Instructor',
                           'credentialCategory': 'certification',
                           'recognizedBy': {'@type': 'Organization', 'name': 'Professional Tennis Registry (PTR)'}},
-        'memberOf': {'@type': 'SportsTeam', 'name': 'Pomperaug High School varsity tennis', 'sport': 'Tennis'},
+        'alumniOf': {'@type': 'HighSchool', 'name': 'Pomperaug High School', 'address': {'@type': 'PostalAddress', 'addressLocality': 'Southbury', 'addressRegion': 'CT', 'addressCountry': 'US'}},
     }
 
 
@@ -469,7 +469,7 @@ def xp_cards():
 def about_page():
     path = 'about/'
     title = f'About Lucas Oskwarek, PTR Certified Tennis Coach | {S["name"]}'
-    desc = ('Meet Lucas Oskwarek: PTR Certified tennis instructor, Pomperaug #1 singles, SWC champion, top 30 USTA CT '
+    desc = ('Meet Lucas Oskwarek: PTR Certified tennis instructor, former Pomperaug #1 singles, SWC champion, top 30 USTA CT '
             'and Highfield CC kids camp coach.')
     items = [('Home', ''), ('About Lucas', path)]
     prof = {'@type': 'ProfilePage', '@id': BASE_URL + '/about/#page', 'url': BASE_URL + '/about/',

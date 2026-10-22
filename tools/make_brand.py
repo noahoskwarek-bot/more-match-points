@@ -37,18 +37,18 @@ def og_html():
 html,body{{margin:0;width:1200px;height:630px;overflow:hidden}}
 body{{background:{GREEN};color:{WHITE};font-family:Oswald,"Inter",sans-serif;position:relative}}
 .band{{position:absolute;left:0;right:0;top:0;height:14px;background:{BALL}}}
-.wrap{{position:absolute;left:80px;top:70px;width:700px}}
+.wrap{{position:absolute;left:80px;top:56px;width:720px}}
 .top{{font-size:40px;letter-spacing:3px;text-transform:uppercase;color:{BALL};font-weight:600}}
-h1{{font-size:96px;line-height:1.02;margin:16px 0 24px;text-transform:uppercase;font-weight:700}}
+h1{{font-size:100px;line-height:1;margin:12px 0 22px;text-transform:uppercase;font-weight:700}}
 .price{{display:inline-block;background:{WHITE};color:{GREEN};font-size:48px;font-weight:700;padding:10px 28px;border-radius:12px;border-left:14px solid {BALL}}}
-.meta{{font-family:Montserrat,"Inter",sans-serif;font-size:28px;margin-top:30px;font-weight:600}}
-.phone{{font-size:44px;color:{BALL};margin-top:8px;font-weight:600}}
+.meta{{font-family:Montserrat,"Inter",sans-serif;font-size:27px;line-height:1.35;margin-top:24px;font-weight:600}}
+.phone{{font-size:38px;color:{BALL};margin-top:10px;font-weight:600}}
 svg{{position:absolute;right:70px;top:150px;width:340px;height:340px}}
 </style></head><body><div class="band"></div><div class="wrap">
-<div class="top">{e(site["header_top"])} {e(site["header_bottom"])}</div>
-<h1>Private Tennis Lessons</h1>
+<div class="top">{e(site["brand_sub"])}</div>
+<h1>{e(site["name"])}</h1>
 <div class="price">${site["price"]} / {e(site["lesson_length"].upper())}</div>
-<div class="meta">{e(site["coach"])} · {e(areas)}</div>
+<div class="meta">Private tennis lessons with {e(site["coach"])}<br>{e(areas)}</div>
 <div class="phone">Request a lesson online</div></div>
 <svg viewBox="0 0 100 100">{ball(seam=GREEN)}</svg></body></html>'''
 

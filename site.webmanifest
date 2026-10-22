@@ -1,19 +1,19 @@
 {
- "name": "Lucas Oskwarek Tennis",
- "short_name": "Lucas Tennis",
- "start_url": "/lucas-tennis/",
- "scope": "/lucas-tennis/",
+ "name": "More Match Points",
+ "short_name": "More Match Points",
+ "start_url": "/more-match-points/",
+ "scope": "/more-match-points/",
  "display": "browser",
  "background_color": "#ffffff",
  "theme_color": "#1b5e20",
  "icons": [
   {
-   "src": "/lucas-tennis/icon-192.png",
+   "src": "/more-match-points/icon-192.png",
    "sizes": "192x192",
    "type": "image/png"
   },
   {
-   "src": "/lucas-tennis/icon-512.png",
+   "src": "/more-match-points/icon-512.png",
    "sizes": "512x512",
    "type": "image/png"
   }

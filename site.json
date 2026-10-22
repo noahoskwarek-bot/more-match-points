@@ -1,11 +1,12 @@
 {
   "_help": "All site text lives here. Edit, then run: python3 build.py && python3 build.py --check. See README.md.",
-  "name": "Lucas Oskwarek Tennis",
+  "name": "More Match Points",
+  "_name_help": "Brand name: header wordmark, page titles, share image, manifest, footer and the search listing. Lucas is listed as the coach.",
   "coach": "Lucas Oskwarek",
-  "base_url": "https://noahoskwarek-bot.github.io/lucas-tennis",
-  "_base_help": "Full site address with no trailing slash. If a custom domain is added later, change this to e.g. https://www.example.com and add a CNAME file.",
-  "title": "Private Tennis Lessons in Middlebury & Southbury, CT | Lucas Oskwarek",
-  "description": "1-on-1 private tennis lessons with PTR Certified instructor Lucas Oskwarek. $35 per 1-hour lesson, flexible scheduling, all skill levels. Serving Middlebury, Southbury and Greater Waterbury, CT.",
+  "base_url": "https://noahoskwarek-bot.github.io/more-match-points",
+  "_base_help": "Full site address with no trailing slash. When morematchpoints.com is pointed at GitHub Pages, change this to https://www.morematchpoints.com (or the bare domain), add a CNAME file and rebuild.",
+  "title": "More Match Points | Private Tennis Lessons in Middlebury & Southbury, CT",
+  "description": "More Match Points: 1-on-1 private tennis lessons with PTR Certified instructor Lucas Oskwarek. $35 per 1-hour lesson, flexible scheduling, all skill levels. Serving Middlebury, Southbury and Greater Waterbury, CT.",
   "header_top": "PTR Certified",
   "header_bottom": "Tennis Instruction",
   "tagline": "Take your game to the next level.",
@@ -71,7 +72,7 @@
   ],
   "_area_help": "areas = what visitors see. area_cities = town names given to search engines (areaServed).",
   "form_endpoint": "https://formsubmit.co/8e6141005ff5c6d8439776617a1f4f33",
-  "form_subject": "New lesson request - Lucas Tennis",
+  "form_subject": "New lesson request - More Match Points",
   "form_captcha": true,
   "_form_help": "POST endpoint for the lesson request form (FormSubmit). Can be swapped for FormSubmit's random-string alias (https://formsubmit.co/<alias>) after activation. FormSubmit sends a one-time activation email to the address on the first real submission; someone must click Activate before requests arrive. null = the form is hidden and visitors use call/text/email.",
   "skill_levels": [
@@ -89,5 +90,8 @@
   ],
   "book_title": "Book your lesson",
   "book_text": "Send a lesson request with your preferred times and skill level, and Lucas will get back to you to set up your first lesson.",
-  "_book_help": "The lesson request form is the only contact method on the site (no phone or email is published)."
+  "_book_help": "The lesson request form is the only contact method on the site (no phone or email is published).",
+  "short_name": "More Match Points",
+  "brand_sub": "PTR Certified Tennis Instruction",
+  "footer_line": "Private tennis lessons with Lucas Oskwarek, PTR Certified"
 }

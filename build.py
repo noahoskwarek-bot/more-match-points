@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Static site generator for Lucas Oskwarek Tennis (GitHub Pages, main branch root).
+"""Static site generator for More Match Points (GitHub Pages, main branch root).
 
 Edit site.json (or src/style.css), then:
     python3 build.py            # write all generated files
@@ -21,13 +21,14 @@ def read(p):
 
 S = json.loads(read('site.json'))
 BASE_URL = S['base_url'].rstrip('/')
-BASE = urlparse(BASE_URL).path.rstrip('/')   # "/lucas-tennis" on github.io, "" on a custom domain
+BASE = urlparse(BASE_URL).path.rstrip('/')   # "/more-match-points" on github.io, "" on a custom domain
 CSS = read('src/style.css')
 MARK = read('brand/mark.svg').replace('<svg ', '<svg aria-hidden="true" focusable="false" ', 1)
 CHECK = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11" fill="#1b5e20"/>'
          '<path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#c8f03c" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>')
 AREAS = ' · '.join(S['areas']) + ', ' + S['state']
 PRICE = f'${S["price"]}'
+COACH = {'@type': 'Person', 'name': S['coach'], 'jobTitle': 'PTR Certified Tennis Instructor'}
 
 
 def u(path=''):
@@ -47,7 +48,9 @@ def jsonld():
         'priceRange': f'{PRICE} per {S["lesson_length"]}',
         'areaServed': [{'@type': 'City', 'name': f'{c}, {S["state"]}'} for c in S['area_cities']],
         'address': {'@type': 'PostalAddress', 'addressLocality': S['area_cities'][0], 'addressRegion': S['state'], 'addressCountry': 'US'},
-        'founder': {'@type': 'Person', 'name': S['coach']},
+        'founder': COACH,
+        'employee': COACH,
+        'slogan': S['tagline'],
         'makesOffer': {'@type': 'Offer', 'name': f'1-on-1 private tennis lesson ({S["lesson_length"]})',
                        'price': str(S['price']), 'priceCurrency': 'USD'},
     }
@@ -80,7 +83,7 @@ def head(title, desc, path, noindex=False):
 <meta property="og:image" content="{BASE_URL}/images/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="{e(S['header_top'] + ' ' + S['header_bottom'])}: private tennis lessons, {e(PRICE)} per {e(S['lesson_length'])}">
+<meta property="og:image:alt" content="{e(S['name'])}: private tennis lessons with {e(S['coach'])}, {e(PRICE)} per {e(S['lesson_length'])}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{e(title)}">
 <meta name="twitter:description" content="{e(desc)}">
@@ -91,7 +94,7 @@ def head(title, desc, path, noindex=False):
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="top dark"><div class="wrap">
-<a class="brand" href="{u()}">{MARK}<span class="txt"><b>{e(S['header_top'])}</b><span class="sub">{e(S['header_bottom'])}</span></span></a>
+<a class="brand" href="{u()}" aria-label="{e(S['name'])} home">{MARK}<span class="txt"><b>{e(S['name'])}</b><span class="sub">{e(S['brand_sub'])}</span></span></a>
 <a class="call" href="{u()}#request">Request a lesson</a>
 </div></header>
 '''
@@ -101,10 +104,10 @@ def foot(sticky=True):
     bar = f'<div class="sticky dark"><a class="btn ball" href="{u()}#request">Request a lesson</a></div>' if sticky else ''
     year = BUILD_DATE[:4]
     return f'''<footer class="dark"><div class="wrap center">
-<p><strong>{e(S['coach'])}</strong> · {e(S['header_top'])} {e(S['header_bottom'])}</p>
+<p><strong>{e(S['name'])}</strong> · {e(S['footer_line'])}</p>
 <p>Private tennis lessons in {e(AREAS)}</p>
 <p><a href="{u()}#request">Request a lesson</a></p>
-<p class="small" style="color:#d7e6d3">© {year} {e(S['coach'])}</p>
+<p class="small" style="color:#d7e6d3">© {year} {e(S['name'])}</p>
 </div></footer>
 {bar}
 </body>
@@ -176,7 +179,7 @@ def index():
 
 
 def thanks():
-    t = f'Thanks for your lesson request | {S["coach"]}'
+    t = f'Thanks for your lesson request | {S["name"]}'
     body = f'''<main id="main"><section class="hero"><div class="wrap">
 <h1>Thanks!</h1>
 <p class="intro">Your lesson request was sent. Lucas will get back to you soon to set up a time.</p>
@@ -187,7 +190,7 @@ def thanks():
 
 
 def notfound():
-    t = f'Page not found | {S["coach"]}'
+    t = f'Page not found | {S["name"]}'
     body = f'''<main id="main"><section class="hero"><div class="wrap">
 <h1>Page not found</h1>
 <p class="intro">That page doesn’t exist. Private lessons, prices and the request form are on the home page.</p>
@@ -205,7 +208,7 @@ def outputs():
         'robots.txt': f'User-agent: *\nAllow: /\n\nSitemap: {BASE_URL}/sitemap.xml\n',
         'sitemap.xml': ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
                         f'<url><loc>{BASE_URL}/</loc><lastmod>{BUILD_DATE}</lastmod></url>\n</urlset>\n'),
-        'site.webmanifest': json.dumps({'name': S['name'], 'short_name': 'Lucas Tennis', 'start_url': u(), 'scope': u(),
+        'site.webmanifest': json.dumps({'name': S['name'], 'short_name': S['short_name'], 'start_url': u(), 'scope': u(),
                                         'display': 'browser', 'background_color': '#ffffff', 'theme_color': '#1b5e20',
                                         'icons': [{'src': u('icon-192.png'), 'sizes': '192x192', 'type': 'image/png'},
                                                   {'src': u('icon-512.png'), 'sizes': '512x512', 'type': 'image/png'}]}, indent=1) + '\n',

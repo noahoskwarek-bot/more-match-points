@@ -25,13 +25,18 @@ def read(p):
 S = json.loads(read('site.json'))
 TOWNS = json.loads(read('towns.json'))['towns']
 PRICE = f'${S["price"]}'
+PROG, PLUS = S['program'], S['program_plus']
+MMP_PRICE = f'${PROG["price"]}'
+MMP_REG = f'${PROG["lessons"] * S["price"]}'   # "normally": lessons x the single lesson price
+PLUS_PRICE = f'${PLUS["price"]}'
+PLUS_REG = f'${PLUS["lessons"] * S["price"]}'
 TOWN_LIST = ', '.join(x['name'] for x in TOWNS[:-1]) + ' and ' + TOWNS[-1]['name']
 
 
 def fill(v):
     """{price} and {towns} in any site.json / towns.json text -> the single price setting / every town."""
     if isinstance(v, str):
-        return v.replace('{price}', PRICE).replace('{towns}', TOWN_LIST)
+        return v.replace('{price}', PRICE).replace('{towns}', TOWN_LIST).replace('{mmp_price}', MMP_PRICE)
     if isinstance(v, list):
         return [fill(x) for x in v]
     if isinstance(v, dict):
@@ -40,6 +45,7 @@ def fill(v):
 
 
 S, TOWNS = fill(S), fill(TOWNS)
+PROG, PLUS = S['program'], S['program_plus']
 BASE_URL = S['base_url'].rstrip('/')
 HOST = urlparse(BASE_URL).hostname
 BASE = urlparse(BASE_URL).path.rstrip('/')   # "" on the custom domain, "/<repo>" on a github.io project URL
@@ -199,6 +205,7 @@ def nav():
             f'<span class="bars" aria-hidden="true"><i></i><i></i><i></i></span></button>'
             f'<nav class="nav" id="site-nav" aria-label="Main"><ul class="nav-list">'
             f'<li><a href="{u()}#how">How it works</a></li><li><a href="{u()}#pricing">Pricing</a></li>'
+            f'<li><a href="{u("mmp-program/")}">MMP Program</a></li>'
             f'{dropdown("loc", "Locations", u("tennis-lessons/"), locs)}{dropdown("about", "About", u("about/"), about)}'
             f'<li class="nav-cta"><a class="btn optic block" href="{u()}#request">Request a lesson {ARROW}</a></li>'
             f'</ul></nav>')
@@ -211,7 +218,7 @@ def foot(sticky=True):
 <div class="foot-brand">{mark()}<div><p class="word">{e(S['name'])}</p><p>{e(S['footer_line'])}</p></div></div>
 <p class="foot-area">Private tennis lessons in {e(AREAS)}</p>
 <nav class="foot-towns" aria-label="Tennis lessons by town"><p class="foot-h"><a href="{u('tennis-lessons/')}">Locations</a></p><ul>{''.join(f'<li><a href="{u("tennis-lessons/" + x["slug"] + "/")}">{e(x["name"])}</a></li>' for x in TOWNS)}</ul></nav>
-<p class="foot-links"><a href="{u('about/')}">About Lucas</a><a href="{u('faq/')}">FAQ</a><a href="{u('tennis-lessons/')}">All locations</a></p>
+<p class="foot-links"><a href="{u('mmp-program/')}">MMP Program</a><a href="{u('about/')}">About Lucas</a><a href="{u('faq/')}">FAQ</a><a href="{u('tennis-lessons/')}">All locations</a></p>
 <p><a class="foot-cta" href="{u()}#request">Request a lesson {ARROW}</a></p>
 <p class="fine">© {year} {e(S['name'])}</p>
 </div></footer>
@@ -237,6 +244,12 @@ def form():
 <div class="field"><label for="f-town">Town</label><select id="f-town" name="town" required><option value="">Choose one</option>{towns}</select></div>
 </div>
 <div class="field"><label for="f-times">Preferred times <span class="hint">e.g. weekday afternoons, Saturday mornings</span></label><input id="f-times" name="preferred_times" type="text"></div>
+<fieldset class="field pkg"><legend>Lesson package <span class="hint">Optional</span></legend>
+<label class="opt" for="f-pkg-single"><input id="f-pkg-single" name="mmp_program" type="radio" value="Single lessons" checked><span>Single lessons <span class="hint">{e(PRICE)} per {e(S['lesson_length'])}</span></span></label>
+<label class="opt" for="f-mmp"><input id="f-mmp" name="mmp_program" type="radio" value="MMP Program ({PROG['lessons']} lessons, {MMP_PRICE})"><span>{e(PROG['name'])} <span class="hint">{e(PROG['lessons'])} lessons for {e(MMP_PRICE)}</span></span></label>
+<label class="opt" for="f-mmp-plus"><input id="f-mmp-plus" name="mmp_program" type="radio" value="MMP+ ({PLUS['lessons']} lessons, {PLUS_PRICE})"><span>{e(PLUS['name'])} <span class="hint">{e(PLUS['lessons'])} lessons for {e(PLUS_PRICE)}</span></span></label>
+<p class="hint"><a href="{u('mmp-program/')}">What’s included in the MMP Program and MMP+</a></p>
+</fieldset>
 <div class="field"><label for="f-msg">Message <span class="hint">Optional: goals, age of the player, anything else</span></label><textarea id="f-msg" name="message" rows="4"></textarea></div>
 <p class="form-err" id="form-err" role="alert" tabindex="-1" hidden>Sorry, your request didn't go through. Please check your connection and try again in a moment.</p>
 <button class="btn optic block" type="submit">Send lesson request {ARROW}</button>
@@ -277,7 +290,7 @@ def index():
 <ul class="stat-row">{stats}</ul>
 <p class="stat-more"><a class="text-link" href="{u('about/')}">About Lucas and his experience {ARROW}</a></p>
 </div></section>
-<section class="how" id="how" aria-labelledby="how-title"><div class="wrap">
+{meaning_section()}<section class="how" id="how" aria-labelledby="how-title"><div class="wrap">
 <div class="sec-head reveal"><p class="kicker">How it works</p><h2 id="how-title">Request. Confirm. Play.</h2></div>
 <ol class="steps">{steps}</ol>
 </div></section>
@@ -292,7 +305,7 @@ def index():
 <a class="btn optic block" href="#request">Request a lesson {ARROW}</a>
 </div>
 </div></section>
-<section class="area" id="area" aria-labelledby="area-title"><div class="wrap area-grid">
+{program_teaser()}<section class="area" id="area" aria-labelledby="area-title"><div class="wrap area-grid">
 <div class="sec-head reveal"><p class="kicker">Lesson area</p><h2 id="area-title">{e(S['area_title'])}</h2>
 <p class="body">{e(S['area_intro'])}</p>{towns}
 <p class="more"><a class="text-link" href="{u('tennis-lessons/')}">All locations {ARROW}</a></p></div>
@@ -521,8 +534,95 @@ def faq_page():
     return head(title, desc, path, ld_extra=[crumbs(items), faq]) + body + foot()
 
 
+MMP_URL = 'mmp-program/'
+MMP_REQ = '?program=mmp#request'   # site.js selects the package on the form for ?program=mmp / ?program=mmp-plus
+PLUS_REQ = '?program=mmp-plus#request'
+
+
+def meaning_section():
+    paras = ''.join(f'<p class="body">{e(p)}</p>' for p in S['meaning_text'])
+    pills = ''.join(f'<li>{TICK}{e(p)}</li>' for p in S['meaning_pillars'])
+    return f"""<section class="meaning" id="meaning" aria-labelledby="meaning-title"><div class="wrap meaning-grid">
+<div class="sec-head reveal"><p class="kicker">{e(S['meaning_title'])}</p><h2 id="meaning-title">{e(S['meaning_heading'])}</h2></div>
+<div class="meaning-copy reveal">{paras}<ul class="pillars">{pills}</ul></div>
+</div></section>
+"""
+
+
+def program_card(cta_href, cta_text, pk=None):
+    pk = pk or PROG
+    reg = f'${pk["lessons"] * S["price"]}'
+    pts = pk.get('points') or [f'{w["when"]}: {w["title"]}' for w in pk['weeks']]
+    fine = ' '.join(pk['fine_print'])
+    return f"""<div class="price-card mmp-card{' plus' if pk is PLUS else ''} reveal">
+<p class="pc-tag">{e(pk['name'])}</p>
+<p class="amount"><span class="cur">$</span>{e(pk['price'])}</p>
+<p class="per">for {e(pk['lessons'])} private lessons <s class="was">normally {e(reg)}</s></p>
+<ul class="pc-list">{''.join(f'<li>{TICK}{e(p)}</li>' for p in pts)}</ul>
+<a class="btn optic block" href="{cta_href}">{e(cta_text)} {ARROW}</a>
+<p class="mmp-fine">{e(fine)} Single lessons stay {e(PRICE)} per {e(S['lesson_length'])}.</p>
+</div>"""
+
+
+def program_teaser():
+    return f"""<section class="mmp-teaser" id="mmp" aria-labelledby="mmp-title"><div class="wrap price-grid">
+<div class="sec-head reveal"><p class="kicker">New · {e(PROG['name'])}</p><h2 id="mmp-title">{e(PROG['headline'])}</h2>
+<p class="body">{e(PROG['teaser'])}</p>
+<p class="body promise"><strong>Our promise:</strong> {e(PROG['promise'])}</p>
+<p class="more"><a class="text-link" href="{u(MMP_URL)}">See the MMP Program and MMP+ {ARROW}</a></p></div>
+{program_card(u(MMP_REQ), 'Request the MMP Program')}
+</div></section>
+"""
+
+
+def program_page():
+    path = MMP_URL
+    title = f'The MMP Program: 4 Private Tennis Lessons, {MMP_PRICE} | {S["name"]}'
+    desc = (f'The MMP Program: 4 private tennis lessons with PTR Certified coach Lucas Oskwarek for {MMP_PRICE}, '
+            f'or MMP+, 8 lessons for {PLUS_PRICE}. Baseline, training, retest.')
+    items = [('Home', ''), (PROG['name'], path)]
+    svc = {'@type': 'Service', '@id': BASE_URL + '/' + path + '#service', 'name': PROG['name'],
+           'serviceType': 'Private tennis lesson series', 'description': PROG['intro'],
+           'provider': {'@id': BIZ_ID}, 'areaServed': [city(x['name']) for x in TOWNS], 'url': BASE_URL + '/' + path}
+    fine_plus = ''.join(f'<li>{e(x)}</li>' for x in PLUS['fine_print'])
+    h1 = '<span class="ln">The MMP</span> <span class="ln hi">Program.</span>'
+    weeks = ''.join(f'<li class="step reveal"><span class="num">{e(w["when"])}</span><h3>{e(w["title"])}</h3><p>{e(w["text"])}</p></li>'
+                    for w in PROG['weeks'])
+    fine = ''.join(f'<li>{e(x)}</li>' for x in PROG['fine_print'])
+    buttons = (f'<a class="btn optic" href="{u(MMP_REQ)}">Request the MMP Program {ARROW}</a>'
+               f'<a class="btn line" href="#packages">{e(MMP_PRICE)} for {e(PROG["lessons"])} · {e(PLUS_PRICE)} for {e(PLUS["lessons"])}</a>')
+    body = f"""<main id="main">
+{page_hero(PROG['headline'], h1, PROG['intro'], items, buttons)}
+<section class="how" aria-labelledby="weeks-title"><div class="wrap">
+<div class="sec-head reveal"><p class="kicker">How it works</p><h2 id="weeks-title">4 weeks. 4 lessons.</h2></div>
+<ol class="steps weeks">{weeks}</ol>
+</div></section>
+<section class="light price-sec" id="mmp-price" aria-labelledby="promise-title"><div class="wrap price-grid">
+<div class="sec-head reveal"><p class="kicker">Our promise</p><h2 id="promise-title">Measurable, or the next one\u2019s on us.</h2>
+<p class="body">{e(PROG['promise'])}</p>
+<div class="note fine-print"><h3>Fine print</h3><ul>{fine}</ul></div>
+<p class="body">Prefer one lesson at a time? Single 1-on-1 lessons are still {e(PRICE)} per {e(S['lesson_length'])}.</p></div>
+<div class="sec-head reveal plus-copy"><p class="kicker">Keep climbing</p><h2>{e(PLUS['name'])}</h2>
+<p class="body">{e(PLUS['name'])}: {e(PLUS['intro'])}</p>
+<p class="body promise"><strong>Same promise:</strong> {e(PLUS['promise'])}</p>
+<div class="note fine-print"><h3>MMP+ fine print</h3><ul>{fine_plus}</ul></div></div>
+</div><div class="wrap pkg-grid" id="packages">
+{program_card(u(MMP_REQ), 'Request the MMP Program')}
+{program_card(u(PLUS_REQ), 'Request MMP+', PLUS)}
+</div></section>
+{meaning_section()}<section class="area near" aria-labelledby="mmp-towns"><div class="wrap">
+<div class="sec-head"><p class="kicker">Where I teach</p><h2 id="mmp-towns">Available in all {len(TOWNS)} towns</h2>
+<p class="body">The MMP Program and MMP+ are offered across the whole lesson area: {e(TOWN_LIST)}, CT. Your court is arranged with you when you book.</p></div>
+{town_chips()}
+<p class="more"><a class="btn optic" href="{u(MMP_REQ)}">Request the MMP Program {ARROW}</a> <a class="text-link" href="{u('about/')}">About Lucas {ARROW}</a> <a class="text-link" href="{u('faq/')}">FAQ {ARROW}</a></p>
+</div></section>
+</main>
+"""
+    return head(title, desc, path, ld_extra=[crumbs(items), svc]) + body + foot()
+
+
 def sitemap_paths():
-    return [''] + ['tennis-lessons/'] + [f'tennis-lessons/{x["slug"]}/' for x in TOWNS] + ['about/', 'faq/']
+    return [''] + ['tennis-lessons/'] + [f'tennis-lessons/{x["slug"]}/' for x in TOWNS] + ['mmp-program/', 'about/', 'faq/']
 
 
 def sitemap():
@@ -556,6 +656,7 @@ def outputs():
         'tennis-lessons/index.html': towns_index(),
         'faq/index.html': faq_page(),
         'about/index.html': about_page(),
+        'mmp-program/index.html': program_page(),
         'site.webmanifest': json.dumps({'name': S['name'], 'short_name': S['short_name'], 'start_url': u(), 'scope': u(),
                                         'display': 'browser', 'background_color': art.NAVY, 'theme_color': art.NAVY,
                                         'icons': [{'src': u('icon-192.png'), 'sizes': '192x192', 'type': 'image/png'},

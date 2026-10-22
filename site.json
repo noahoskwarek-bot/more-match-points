@@ -221,5 +221,64 @@
   "_reviews_help": "Real reviews only, shared with permission. Each: {\"name\": \"J.D.\" or first name, \"text\": \"...\", \"date\": \"YYYY-MM-DD\"}. Empty = the section is not rendered at all. See README.",
   "area_line": "Greater Waterbury through Newtown, Monroe, Redding & Danbury, CT",
   "og_area": "Greater Waterbury to Danbury, CT",
-  "about_intro": "Lucas Oskwarek is a PTR Certified tennis instructor and a former varsity player at Pomperaug High School in Southbury, CT. Here is the experience behind every lesson."
+  "about_intro": "Lucas Oskwarek is a PTR Certified tennis instructor and a former varsity player at Pomperaug High School in Southbury, CT. Here is the experience behind every lesson.",
+  "meaning_title": "What More Match Points means",
+  "meaning_heading": "Won one point at a time.",
+  "meaning_text": [
+    "Tennis isn’t won on pretty practice shots. It’s won one point at a time.",
+    "More Match Points is about exactly that: turning what you practice into points you actually win when it counts. Every lesson with Lucas is built around real match situations, like serving under pressure, returning with purpose and closing out tight games, so you walk on court and win more points, more games and more matches."
+  ],
+  "meaning_pillars": [
+    "Serve under pressure",
+    "Return with purpose",
+    "Close out tight games"
+  ],
+  "program": {
+    "name": "The MMP Program",
+    "headline": "4 lessons. Measurable results.",
+    "intro": "A focused 4-week series of private lessons with Lucas Oskwarek, PTR-certified coach, built to make you a better match player, fast.",
+    "weeks": [
+      {
+        "when": "Week 1",
+        "title": "Baseline assessment",
+        "text": "We measure your serve, consistency, returns and movement, and set clear goals."
+      },
+      {
+        "when": "Weeks 2–3",
+        "title": "Targeted training",
+        "text": "We work on the parts of your game costing you the most points."
+      },
+      {
+        "when": "Week 4",
+        "title": "Retest and match-play plan",
+        "text": "See your numbers improve, and leave with a plan to keep winning."
+      }
+    ],
+    "promise": "If your retest doesn’t show measurable improvement, your next lesson is on us.",
+    "price": 165,
+    "lessons": 4,
+    "fine_print": [
+      "Lessons must be completed within 6 weeks.",
+      "Promise applies to students who attend all 4 sessions."
+    ],
+    "teaser": "A focused 4-week series of private lessons built around your match play: a baseline assessment, targeted training and a retest, so you can see the improvement. Want more? MMP+ is 8 lessons with a midpoint and final retest."
+  },
+  "_program_help": "The MMP Program (program) and MMP+ (program_plus): home teaser (after Pricing), the /mmp-program/ page and the \"Lesson package\" choice on the lesson form (field mmp_program). price = package price in whole dollars; the \"normally\" price is lessons x the single lesson price. Single lessons stay at price. No rating or ranking guarantees.",
+  "program_plus": {
+    "name": "MMP+",
+    "lessons": 8,
+    "price": 320,
+    "intro": "8 lessons for players who want to keep climbing. Same baseline assessment, a midpoint retest at lesson 4, a final retest at lesson 8, and a full match-play plan.",
+    "points": [
+      "Lesson 1: Baseline assessment",
+      "Lesson 4: Midpoint retest",
+      "Lesson 8: Final retest",
+      "Full match-play plan"
+    ],
+    "promise": "If your final retest doesn’t show measurable improvement, your next lesson is on us.",
+    "fine_print": [
+      "Lessons must be completed within 10 weeks.",
+      "Promise applies to students who attend all 8 sessions."
+    ]
+  }
 }

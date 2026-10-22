@@ -7,6 +7,8 @@ var bar=document.getElementById('sticky'),req=document.getElementById('request')
 if(bar&&req&&'IntersectionObserver' in window){new IntersectionObserver(function(es){bar.classList.toggle('away',es[0].isIntersecting);},{threshold:0.05}).observe(req);}
 /* lesson form: send via fetch (Formspree JSON) and go to /thanks/; without JS the form posts normally. */
 var rf=document.getElementById('request-form');
+/* ?program=mmp / ?program=mmp-plus (links from the MMP Program page) pre-select the package. */
+var pm=/[?&]program=(mmp-plus|mmp)(&|$)/.exec(location.search),pe=pm&&document.getElementById(pm[1]==='mmp-plus'?'f-mmp-plus':'f-mmp');if(pe)pe.checked=true;
 if(rf&&window.fetch&&window.FormData){var re=document.getElementById('form-err'),sb=rf.querySelector('button[type=submit]');
 rf.addEventListener('submit',function(ev){ev.preventDefault();if(re)re.hidden=true;if(sb){sb.disabled=true;sb.setAttribute('aria-busy','true');}
 fetch(rf.action,{method:'POST',body:new FormData(rf),headers:{'Accept':'application/json'}}).then(function(r){

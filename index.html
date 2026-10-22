@@ -542,13 +542,51 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
 .stat-more .text-link{color:var(--optic)}
 .top.open{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--navy)}
 .foot-links{display:flex;flex-wrap:wrap;gap:0 22px}
+/* What More Match Points means */
+.meaning{background:radial-gradient(80% 70% at 100% 0%,#16306f 0%,rgba(10,17,40,0) 60%),var(--navy);border-top:1px solid var(--hair-d)}
+.meaning-grid{display:grid;gap:4px;align-items:start}
+.meaning .sec-head{margin-bottom:10px}
+.meaning-copy .body{margin-top:0;margin-bottom:16px;color:#dfe4f1;font-size:1.1rem;max-width:34em}
+.meaning-copy .body:first-child{font-family:var(--disp);text-transform:uppercase;font-size:clamp(1.5rem,6vw,2.1rem);line-height:1.1;color:var(--white);letter-spacing:.01em}
+.pillars{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.pillars li{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:9px 16px 9px 10px;font-weight:700;font-size:15px}
+/* MMP Program */
+.mmp-teaser{background:var(--navy);border-top:1px solid var(--hair-d)}
+.mmp-teaser .price-card,.price-sec .mmp-card{background:var(--navy2);border:1px solid var(--hair-d)}
+.light .mmp-card{background:var(--navy)}
+.promise strong{color:var(--optic)}
+.light .promise strong{color:var(--navy)}
+.was{display:block;margin-top:8px;color:var(--mut-d);font-weight:600;text-transform:none;letter-spacing:0}
+.mmp-fine{margin-top:16px;font-size:13.5px;color:var(--mut-d);line-height:1.5}
+.weeks .num{font-size:2.6rem}
+.fine-print{margin:22px 0 6px}
+.fine-print h3{font-size:.95rem}
+/* form: lesson package */
+.pkg{border:1.5px solid #6d7aa3;border-radius:12px;background:#0a1330;padding:14px 14px 6px;margin:0 0 18px;min-width:0}
+.pkg legend{font-weight:700;font-size:15px;padding:0 6px}
+.pkg legend .hint{display:inline;margin-left:6px}
+.pkg .opt{display:flex;align-items:center;gap:12px;min-height:48px;margin:0 0 8px;padding:8px 12px;border:1px solid var(--hair-d);border-radius:10px;cursor:pointer;font-weight:700}
+.pkg .opt .hint{display:inline;margin-left:6px}
+.pkg .opt input{flex:none;width:20px;height:20px;min-height:0;margin:0;padding:0;accent-color:var(--optic);cursor:pointer}
+.pkg .opt:has(input:checked){border-color:var(--optic);background:rgba(215,242,5,.07)}
+.pkg>p.hint{margin:2px 0 8px}
+.pkg>p.hint a{color:var(--optic)}
+.pkg-grid{display:grid;gap:18px;margin-top:40px}
+.mmp-card.plus{border:2px solid var(--optic)}
+.plus-copy h2{color:var(--navy)}
+@media (min-width:700px){.pkg-grid{grid-template-columns:1fr 1fr}}
+@media (min-width:980px){
+  .meaning-grid{grid-template-columns:.9fr 1.1fr;gap:60px}
+  .price-sec .plus-copy{margin-bottom:34px}
+  .meaning-copy{padding-top:34px}
+}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="top" id="top"><div class="wrap">
 <a class="brand" href="/"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50.0" cy="50.0" r="46.0" fill="#d7f205"/><g fill="none" stroke="#0a1128" stroke-width="6.00" stroke-linecap="round" opacity=".85"><path d="M17.0 20.0C40.0 36.0 40.0 64.0 17.0 80.0"/><path d="M83.0 20.0C60.0 36.0 60.0 64.0 83.0 80.0"/></g></svg><span class="word">More Match Points</span></a>
-<button class="burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu" hidden><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span></button><nav class="nav" id="site-nav" aria-label="Main"><ul class="nav-list"><li><a href="/#how">How it works</a></li><li><a href="/#pricing">Pricing</a></li><li class="dd" data-dd="loc"><a class="dd-link" href="/tennis-lessons/">Locations</a><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-loc" hidden>Locations<svg class="chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><ul class="dd-menu dd-loc" id="dd-loc"><li><a href="/tennis-lessons/middlebury-ct/">Middlebury, CT</a></li><li><a href="/tennis-lessons/southbury-ct/">Southbury, CT</a></li><li><a href="/tennis-lessons/waterbury-ct/">Waterbury, CT</a></li><li><a href="/tennis-lessons/woodbury-ct/">Woodbury, CT</a></li><li><a href="/tennis-lessons/oxford-ct/">Oxford, CT</a></li><li><a href="/tennis-lessons/naugatuck-ct/">Naugatuck, CT</a></li><li><a href="/tennis-lessons/watertown-ct/">Watertown, CT</a></li><li><a href="/tennis-lessons/cheshire-ct/">Cheshire, CT</a></li><li><a href="/tennis-lessons/prospect-ct/">Prospect, CT</a></li><li><a href="/tennis-lessons/newtown-ct/">Newtown, CT</a></li><li><a href="/tennis-lessons/monroe-ct/">Monroe, CT</a></li><li><a href="/tennis-lessons/redding-ct/">Redding, CT</a></li><li><a href="/tennis-lessons/danbury-ct/">Danbury, CT</a></li><li><a href="/tennis-lessons/">All locations</a></li></ul></li><li class="dd" data-dd="about"><a class="dd-link" href="/about/">About</a><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-about" hidden>About<svg class="chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><ul class="dd-menu dd-about" id="dd-about"><li><a href="/about/">About Lucas</a></li><li><a href="/faq/">FAQ</a></li></ul></li><li class="nav-cta"><a class="btn optic block" href="/#request">Request a lesson <svg class="arr" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li></ul></nav>
+<button class="burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu" hidden><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span></button><nav class="nav" id="site-nav" aria-label="Main"><ul class="nav-list"><li><a href="/#how">How it works</a></li><li><a href="/#pricing">Pricing</a></li><li><a href="/mmp-program/">MMP Program</a></li><li class="dd" data-dd="loc"><a class="dd-link" href="/tennis-lessons/">Locations</a><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-loc" hidden>Locations<svg class="chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><ul class="dd-menu dd-loc" id="dd-loc"><li><a href="/tennis-lessons/middlebury-ct/">Middlebury, CT</a></li><li><a href="/tennis-lessons/southbury-ct/">Southbury, CT</a></li><li><a href="/tennis-lessons/waterbury-ct/">Waterbury, CT</a></li><li><a href="/tennis-lessons/woodbury-ct/">Woodbury, CT</a></li><li><a href="/tennis-lessons/oxford-ct/">Oxford, CT</a></li><li><a href="/tennis-lessons/naugatuck-ct/">Naugatuck, CT</a></li><li><a href="/tennis-lessons/watertown-ct/">Watertown, CT</a></li><li><a href="/tennis-lessons/cheshire-ct/">Cheshire, CT</a></li><li><a href="/tennis-lessons/prospect-ct/">Prospect, CT</a></li><li><a href="/tennis-lessons/newtown-ct/">Newtown, CT</a></li><li><a href="/tennis-lessons/monroe-ct/">Monroe, CT</a></li><li><a href="/tennis-lessons/redding-ct/">Redding, CT</a></li><li><a href="/tennis-lessons/danbury-ct/">Danbury, CT</a></li><li><a href="/tennis-lessons/">All locations</a></li></ul></li><li class="dd" data-dd="about"><a class="dd-link" href="/about/">About</a><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-about" hidden>About<svg class="chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><ul class="dd-menu dd-about" id="dd-about"><li><a href="/about/">About Lucas</a></li><li><a href="/faq/">FAQ</a></li></ul></li><li class="nav-cta"><a class="btn optic block" href="/#request">Request a lesson <svg class="arr" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li></ul></nav>
 <a class="btn optic sm hdr-cta" href="/#request">Request a lesson</a>
 </div></header>
 <main id="main">
@@ -567,6 +605,10 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
 <ul class="stat-row"><li class="stat reveal"><span class="big">#1</span><span class="lbl">Singles</span><span class="sub">Former #1 Singles, Pomperaug High School Varsity</span></li><li class="stat reveal"><span class="big">SWC</span><span class="lbl">Champion</span><span class="sub">SWC Tournament Champion &amp; undefeated season</span></li><li class="stat reveal"><span class="big">Top 30</span><span class="lbl">USTA CT</span><span class="sub">Top 30 USTA ranking in Connecticut</span></li><li class="stat reveal"><span class="big">PTR</span><span class="lbl">Certified</span><span class="sub">PTR Certified Tennis Instructor</span></li></ul>
 <p class="stat-more"><a class="text-link" href="/about/">About Lucas and his experience <svg class="arr" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
 </div></section>
+<section class="meaning" id="meaning" aria-labelledby="meaning-title"><div class="wrap meaning-grid">
+<div class="sec-head reveal"><p class="kicker">What More Match Points means</p><h2 id="meaning-title">Won one point at a time.</h2></div>
+<div class="meaning-copy reveal"><p class="body">Tennis isn’t won on pretty practice shots. It’s won one point at a time.</p><p class="body">More Match Points is about exactly that: turning what you practice into points you actually win when it counts. Every lesson with Lucas is built around real match situations, like serving under pressure, returning with purpose and closing out tight games, so you walk on court and win more points, more games and more matches.</p><ul class="pillars"><li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Serve under pressure</li><li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Return with purpose</li><li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Close out tight games</li></ul></div>
+</div></section>
 <section class="how" id="how" aria-labelledby="how-title"><div class="wrap">
 <div class="sec-head reveal"><p class="kicker">How it works</p><h2 id="how-title">Request. Confirm. Play.</h2></div>
 <ol class="steps"><li class="step reveal"><span class="num">01</span><h3>Request</h3><p>Send the lesson request below with your skill level, town and the times that work for you.</p></li><li class="step reveal"><span class="num">02</span><h3>We confirm</h3><p>Lucas gets back to you to confirm a time and place for your lesson.</p></li><li class="step reveal"><span class="num">03</span><h3>Play</h3><p>A full hour, 1-on-1, at your level.</p></li></ol>
@@ -580,6 +622,20 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
 <p class="per">per 1-hour lesson</p>
 <ul class="pc-list"><li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>1-on-1 private lesson</li><li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Flexible scheduling</li><li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All skill levels welcome</li></ul>
 <a class="btn optic block" href="#request">Request a lesson <svg class="arr" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+</div>
+</div></section>
+<section class="mmp-teaser" id="mmp" aria-labelledby="mmp-title"><div class="wrap price-grid">
+<div class="sec-head reveal"><p class="kicker">New · The MMP Program</p><h2 id="mmp-title">4 lessons. Measurable results.</h2>
+<p class="body">A focused 4-week series of private lessons built around your match play: a baseline assessment, targeted training and a retest, so you can see the improvement. Want more? MMP+ is 8 lessons with a midpoint and final retest.</p>
+<p class="body promise"><strong>Our promise:</strong> If your retest doesn’t show measurable improvement, your next lesson is on us.</p>
+<p class="more"><a class="text-link" href="/mmp-program/">See the MMP Program and MMP+ <svg class="arr" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p></div>
+<div class="price-card mmp-card reveal">
+<p class="pc-tag">The MMP Program</p>
+<p class="amount"><span class="cur">$</span>165</p>
+<p class="per">for 4 private lessons <s class="was">normally $180</s></p>
+<ul class="pc-list"><li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Week 1: Baseline assessment</li><li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Weeks 2–3: Targeted training</li><li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Week 4: Retest and match-play plan</li></ul>
+<a class="btn optic block" href="/?program=mmp#request">Request the MMP Program <svg class="arr" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+<p class="mmp-fine">Lessons must be completed within 6 weeks. Promise applies to students who attend all 4 sessions. Single lessons stay $45 per 1-hour lesson.</p>
 </div>
 </div></section>
 <section class="area" id="area" aria-labelledby="area-title"><div class="wrap area-grid">
@@ -609,6 +665,12 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
 <div class="field"><label for="f-town">Town</label><select id="f-town" name="town" required><option value="">Choose one</option><option>Middlebury</option><option>Southbury</option><option>Waterbury</option><option>Woodbury</option><option>Oxford</option><option>Naugatuck</option><option>Watertown</option><option>Cheshire</option><option>Prospect</option><option>Newtown</option><option>Monroe</option><option>Redding</option><option>Danbury</option><option>Other</option></select></div>
 </div>
 <div class="field"><label for="f-times">Preferred times <span class="hint">e.g. weekday afternoons, Saturday mornings</span></label><input id="f-times" name="preferred_times" type="text"></div>
+<fieldset class="field pkg"><legend>Lesson package <span class="hint">Optional</span></legend>
+<label class="opt" for="f-pkg-single"><input id="f-pkg-single" name="mmp_program" type="radio" value="Single lessons" checked><span>Single lessons <span class="hint">$45 per 1-hour lesson</span></span></label>
+<label class="opt" for="f-mmp"><input id="f-mmp" name="mmp_program" type="radio" value="MMP Program (4 lessons, $165)"><span>The MMP Program <span class="hint">4 lessons for $165</span></span></label>
+<label class="opt" for="f-mmp-plus"><input id="f-mmp-plus" name="mmp_program" type="radio" value="MMP+ (8 lessons, $320)"><span>MMP+ <span class="hint">8 lessons for $320</span></span></label>
+<p class="hint"><a href="/mmp-program/">What’s included in the MMP Program and MMP+</a></p>
+</fieldset>
 <div class="field"><label for="f-msg">Message <span class="hint">Optional: goals, age of the player, anything else</span></label><textarea id="f-msg" name="message" rows="4"></textarea></div>
 <p class="form-err" id="form-err" role="alert" tabindex="-1" hidden>Sorry, your request didn't go through. Please check your connection and try again in a moment.</p>
 <button class="btn optic block" type="submit">Send lesson request <svg class="arr" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -619,7 +681,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
 <div class="foot-brand"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50.0" cy="50.0" r="46.0" fill="#d7f205"/><g fill="none" stroke="#0a1128" stroke-width="6.00" stroke-linecap="round" opacity=".85"><path d="M17.0 20.0C40.0 36.0 40.0 64.0 17.0 80.0"/><path d="M83.0 20.0C60.0 36.0 60.0 64.0 83.0 80.0"/></g></svg><div><p class="word">More Match Points</p><p>Private tennis lessons with Lucas Oskwarek, PTR Certified</p></div></div>
 <p class="foot-area">Private tennis lessons in Greater Waterbury through Newtown, Monroe, Redding &amp; Danbury, CT</p>
 <nav class="foot-towns" aria-label="Tennis lessons by town"><p class="foot-h"><a href="/tennis-lessons/">Locations</a></p><ul><li><a href="/tennis-lessons/middlebury-ct/">Middlebury</a></li><li><a href="/tennis-lessons/southbury-ct/">Southbury</a></li><li><a href="/tennis-lessons/waterbury-ct/">Waterbury</a></li><li><a href="/tennis-lessons/woodbury-ct/">Woodbury</a></li><li><a href="/tennis-lessons/oxford-ct/">Oxford</a></li><li><a href="/tennis-lessons/naugatuck-ct/">Naugatuck</a></li><li><a href="/tennis-lessons/watertown-ct/">Watertown</a></li><li><a href="/tennis-lessons/cheshire-ct/">Cheshire</a></li><li><a href="/tennis-lessons/prospect-ct/">Prospect</a></li><li><a href="/tennis-lessons/newtown-ct/">Newtown</a></li><li><a href="/tennis-lessons/monroe-ct/">Monroe</a></li><li><a href="/tennis-lessons/redding-ct/">Redding</a></li><li><a href="/tennis-lessons/danbury-ct/">Danbury</a></li></ul></nav>
-<p class="foot-links"><a href="/about/">About Lucas</a><a href="/faq/">FAQ</a><a href="/tennis-lessons/">All locations</a></p>
+<p class="foot-links"><a href="/mmp-program/">MMP Program</a><a href="/about/">About Lucas</a><a href="/faq/">FAQ</a><a href="/tennis-lessons/">All locations</a></p>
 <p><a class="foot-cta" href="/#request">Request a lesson <svg class="arr" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
 <p class="fine">© 2026 More Match Points</p>
 </div></footer>
@@ -633,6 +695,8 @@ var bar=document.getElementById('sticky'),req=document.getElementById('request')
 if(bar&&req&&'IntersectionObserver' in window){new IntersectionObserver(function(es){bar.classList.toggle('away',es[0].isIntersecting);},{threshold:0.05}).observe(req);}
 /* lesson form: send via fetch (Formspree JSON) and go to /thanks/; without JS the form posts normally. */
 var rf=document.getElementById('request-form');
+/* ?program=mmp / ?program=mmp-plus (links from the MMP Program page) pre-select the package. */
+var pm=/[?&]program=(mmp-plus|mmp)(&|$)/.exec(location.search),pe=pm&&document.getElementById(pm[1]==='mmp-plus'?'f-mmp-plus':'f-mmp');if(pe)pe.checked=true;
 if(rf&&window.fetch&&window.FormData){var re=document.getElementById('form-err'),sb=rf.querySelector('button[type=submit]');
 rf.addEventListener('submit',function(ev){ev.preventDefault();if(re)re.hidden=true;if(sb){sb.disabled=true;sb.setAttribute('aria-busy','true');}
 fetch(rf.action,{method:'POST',body:new FormData(rf),headers:{'Accept':'application/json'}}).then(function(r){

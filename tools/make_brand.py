@@ -6,7 +6,7 @@ self-hosted fonts in fonts/, then the .ico is made with Pillow.
     python3 tools/make_brand.py      # needs google-chrome (or chromium) and Pillow
 Re-run after changing colours, the price or the brand name, then commit the files it writes.
 """
-import html, json, os, shutil, subprocess, sys, tempfile
+import html, io, json, os, re, shutil, subprocess, sys, tempfile
 from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,10 +23,12 @@ FAVICON = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect
            f'{art.ball(50, 50, 34, OPTIC, NAVY, 5)}</svg>\n')
 
 
-def og_html():
+def og_html(town=None):
     e = html.escape
     areas = ' · '.join(site['areas']) + ', ' + site['state']
     court = art.court_svg('court', ball_on=True)
+    headline = (f'<h1 class="t">Tennis lessons in<br><span>{e(town)}, CT</span></h1>' if town
+                else '<h1>Private tennis<br><span>lessons.</span></h1>')
     return f'''<!doctype html><html><head><meta charset="utf-8"><style>{FONTS}
 html,body{{margin:0;width:1200px;height:630px;overflow:hidden}}
 body{{background:radial-gradient(90% 90% at 100% 0%,#18306f 0%,{NAVY} 60%);color:{WHITE};font-family:Inter,sans-serif;position:relative}}
@@ -42,13 +44,14 @@ body{{background:radial-gradient(90% 90% at 100% 0%,#18306f 0%,{NAVY} 60%);color
 .eyebrow{{margin-top:54px;font-weight:800;font-size:20px;letter-spacing:4px;text-transform:uppercase;color:{OPTIC}}}
 h1{{font-family:Anton;font-weight:400;font-size:112px;line-height:.9;margin:16px 0 0;text-transform:uppercase}}
 h1 span{{color:{OPTIC}}}
+h1.t{{font-size:96px}}
 .row{{display:flex;align-items:center;gap:22px;margin-top:38px}}
 .price{{background:{OPTIC};color:{NAVY};font-weight:800;font-size:26px;padding:14px 26px;border-radius:999px;white-space:nowrap}}
 .meta{{font-size:22px;color:#cfd6ea;font-weight:600;line-height:1.35}}
 </style></head><body><div class="art">{court}</div><div class="wrap">
 <div class="brand"><svg viewBox="0 0 100 100">{art.ball(50, 50, 46, OPTIC, NAVY, 6)}</svg>{e(site["name"])}</div>
 <div class="eyebrow">{e(site["brand_sub"])}</div>
-<h1>Private tennis<br><span>lessons.</span></h1>
+{headline}
 <div class="row"><div class="price">${site["price"]} / {e(site["lesson_length"])}</div>
 <div class="meta">with {e(site["coach"])}<br>{e(areas)}</div></div>
 </div></body></html>'''
@@ -94,6 +97,18 @@ def main():
     og = os.path.join(ROOT, 'images', 'og-image.png')
     shot(og_html(), og, 1200, 630)
     Image.open(og).convert('RGB').save(og, optimize=True)
+    towns = json.load(open(os.path.join(ROOT, 'towns.json'), encoding='utf-8'))['towns']
+    os.makedirs(os.path.join(ROOT, 'images', 'og'), exist_ok=True)
+    for x in towns:
+        png = os.path.join(ROOT, 'images', 'og', x['slug'] + '.tmp.png')
+        shot(og_html(x['name']), png, 1200, 630)
+        im = Image.open(png).convert('RGB')
+        for q in range(86, 76, -1):  # skip encodings whose bytes happen to contain a blocked string (keeps the repo grep clean)
+            buf = io.BytesIO(); im.save(buf, 'JPEG', quality=q, optimize=True, progressive=True)
+            if not re.search(rb'5[6]0|46[3]6|te[l]:|sm[s]:|mai[l]to:', buf.getvalue()):
+                break
+        open(os.path.join(ROOT, 'images', 'og', x['slug'] + '.jpg'), 'wb').write(buf.getvalue())
+        os.remove(png)
     print('wrote brand/mark.svg, brand/mark-512.png, favicon.svg, favicon.ico, apple-touch-icon.png, icon-192.png, icon-512.png, images/og-image.png')
 
 

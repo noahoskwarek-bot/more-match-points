@@ -83,28 +83,32 @@ def court_svg(cls='court', title=None, ball_on=True):
             f'<g class="lines">{"".join(L)}</g><g class="net">{net}</g>{art}</svg>')
 
 
-# lesson area: approximate relative positions (lon, lat) projected into a 480x320 box
-TOWNS = {'Southbury': (-73.2132, 41.4815), 'Middlebury': (-73.1276, 41.5276), 'Waterbury': (-73.0515, 41.5582)}
-
-
+# lesson area: towns from towns.json (lon/lat) projected into a 480x340 box. Stylised diagram, not a map.
 def _xy(lon, lat):
-    return (40 + (lon + 73.30) / 0.35 * 400, 290 - (lat - 41.44) / 0.16 * 250)
+    return (34 + (lon + 73.25) / 0.38 * 412, 312 - (lat - 41.41) / 0.22 * 276)
 
 
-def area_svg(labels):
-    """labels: {town key: label shown}. Stylised diagram, not a map."""
-    mx, my = _xy(*TOWNS['Middlebury'])
-    rings = ''.join(f'<circle cx="{mx:.0f}" cy="{my:.0f}" r="{r}" class="ring"/>' for r in (70, 140, 210))
-    pts = {k: _xy(*v) for k, v in TOWNS.items()}
-    sb, md, wb = pts['Southbury'], pts['Middlebury'], pts['Waterbury']
-    link = f'<path class="link" pathLength="1" d="M{sb[0]:.0f} {sb[1]:.0f}Q{md[0]-30:.0f} {md[1]+40:.0f} {md[0]:.0f} {md[1]:.0f}T{wb[0]:.0f} {wb[1]:.0f}"/>'
+def area_svg(towns, hub='Middlebury'):
+    pts = {t['name']: _xy(t['lon'], t['lat']) for t in towns}
+    hx, hy = pts[hub]
+    rings = ''.join(f'<circle cx="{hx:.0f}" cy="{hy:.0f}" r="{r}" class="ring"/>' for r in (80, 160, 240))
+    spokes = ''.join(f'<path class="link" pathLength="1" d="M{hx:.0f} {hy:.0f}L{x:.0f} {y:.0f}"/>'
+                     for n, (x, y) in pts.items() if n != hub)
     dots = ''
-    anchor = {'Southbury': ('middle', 38), 'Middlebury': ('end', -20), 'Waterbury': ('middle', -30)}
-    for k, (x, y) in pts.items():
-        a, dy = anchor[k]
-        dx = -14 if a == 'end' else 0
-        dots += (f'<circle cx="{x:.0f}" cy="{y:.0f}" r="8" class="dot"/><circle cx="{x:.0f}" cy="{y:.0f}" r="17" class="halo"/>'
-                 f'<text x="{x+dx:.0f}" y="{y+dy:.0f}" text-anchor="{a}">{labels[k]}</text>')
-    gw = f'<circle cx="{wb[0]:.0f}" cy="{wb[1]:.0f}" r="48" class="zone"/>'
-    return (f'<svg class="area-art" viewBox="34 34 420 250" aria-hidden="true" focusable="false">'
-            f'<g class="grid">{rings}<path d="M0 {my:.0f}H480M{mx:.0f} 0V320" class="axis"/></g>{gw}{link}{dots}</svg>')
+    for t in towns:
+        x, y = pts[t['name']]
+        lab = t.get('label', 'start')
+        if lab == 'middle-below':
+            a, tx, ty = 'middle', x, y + (36 if t['name'] == hub else 32)
+        elif lab == 'middle-above':
+            a, tx, ty = 'middle', x, y - 22
+        elif lab == 'end':
+            a, tx, ty = 'end', x - 16, y + 5
+        else:
+            a, tx, ty = 'start', x + 16, y + 5
+        big = ' hubdot' if t['name'] == hub else ''
+        dots += (f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{9 if big else 7}" class="dot{big}"/>'
+                 f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{18 if big else 14}" class="halo"/>'
+                 f'<text x="{tx:.0f}" y="{ty:.0f}" text-anchor="{a}">{t["name"]}</text>')
+    return (f'<svg class="area-art" viewBox="0 0 480 340" aria-hidden="true" focusable="false">'
+            f'<g class="grid">{rings}<path d="M0 {hy:.0f}H480M{hx:.0f} 0V340" class="axis"/></g>{spokes}{dots}</svg>')

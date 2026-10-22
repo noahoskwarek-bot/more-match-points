@@ -15,7 +15,8 @@ All words on the site live in `site.json` (keys starting with `_` are notes, not
 - `experience`: the experience cards (flyer + resume wording); `why` keeps the flyer's list for reference
 - `steps`: "How it works"; `price_points`: the pricing card list
 - `areas` (shown) and `area_cities` (for search engines): lesson area
-- `title`, `description`: search result title and description, also used for link previews
+- `title`, `meta_description`: home page search title and description (also link previews); `description` is the longer business description in the structured data
+- `area_title`, `area_intro`: the home "Where I teach" section; `faq` and `home_faq_count`: the FAQ (see below)
 - `book_title`, `book_text`: the booking section
 
 The lesson request form is the only contact method on the site; no phone number or email address is published.
@@ -23,9 +24,10 @@ The lesson request form is the only contact method on the site; no phone number 
 ## Rebuild
 
 ```
-python3 build.py                 # writes index.html, thanks/, 404.html, sitemap.xml, robots.txt, site.webmanifest
+python3 build.py                 # writes index.html, tennis-lessons/, faq/, thanks/, 404.html, sitemap.xml, robots.txt, site.webmanifest
 python3 build.py --check         # exits 1 if anything is out of date; run before committing
 BUILD_DATE=2026-10-22 python3 build.py   # optional: pin the sitemap date so rebuilds don't create date-only changes
+python3 tools/check_seo.py       # JSON-LD parses, schema sanity, unique titles/descriptions, canonicals, word counts
 git add -A && git commit -m "Update site" && git push
 ```
 
@@ -48,6 +50,36 @@ The script only adds the scroll reveal and hides the sticky mobile button while 
 - Skill level and town choices are `skill_levels` and `form_towns` in `site.json`.
 - Set `form_endpoint` to `null` to hide the form.
 
+## Town pages (local SEO)
+
+`towns.json` drives `/tennis-lessons/` (index) and one page per town at `/tennis-lessons/<slug>/`, e.g. `/tennis-lessons/middlebury-ct/`.
+Each town has `name`, `slug`, `lat`/`lon` + `label` (position on the area map), `lede` (intro, also the search description), `body` (paragraphs, 150–300 words in total and different for every town) and `courts`.
+
+- **Courts:** only list a court that an official town or parks & recreation page names. Put the official page(s) in `_court_sources` (kept for reference, never shown on the site). If nothing official was found, set `"courts": null` and keep the copy general (Middlebury currently).
+  The pages never promise a facility: lessons happen at a local public court arranged when you book.
+- Don't add distances, partnerships or claims that aren't true.
+- To add a town: add an entry (copy an existing one), add it to `area_cities` and `form_towns` in `site.json`, run `python3 tools/make_brand.py` (makes `images/og/<slug>.jpg`, the town's share image), then rebuild and run `python3 tools/check_seo.py`.
+- Every page gets a canonical URL, breadcrumbs (on the page and as schema), a sitemap entry with `lastmod`, and links from the home "Where I teach" section and the footer.
+
+## FAQ
+
+`faq` in `site.json` (list of `q`/`a`) feeds `/faq/` (with FAQPage structured data) and the first `home_faq_count` questions on the home page.
+**Rain answer:** "rescheduled at no charge, agreed when booking". Confirm this is the policy you want before relying on it, and edit the `a` text if not.
+
+## Reviews
+
+`reviews` in `site.json` is empty on purpose. While it is empty, nothing shows on the site and no review structured data is added.
+Only add a real review from a real student or parent, with their permission to publish it:
+
+```
+"reviews": [
+  {"name": "J.M.", "text": "Their words, unedited.", "date": "2026-11-05"}
+]
+```
+
+Use first name + last initial or initials (whatever they agreed to), their actual words, and the date they gave it. Never write or edit a review yourself. Then rebuild.
+A "Students say" section appears above the FAQ. No star ratings or review schema are added, because Google ignores self-published reviews for local businesses.
+
 ## Design
 
 - Colours: midnight navy `#0a1128`, raised navy `#111b3a`, court blue `#1d43a6`, optic yellow `#d7f205`, paper `#f4f5ef`, clay `#a3461f` (small labels on paper), white.
@@ -65,7 +97,7 @@ The hero currently shows a court-and-ball illustration on purpose. To use a real
 
 ## Logo, favicon and share image
 
-`python3 tools/make_brand.py` draws the tennis-ball mark (`brand/mark.svg`), the favicons, app icons and the 1200x630 share image (`images/og-image.png`) with headless Chrome, the self-hosted fonts and Pillow. Re-run it after changing the colours, price or brand name.
+`python3 tools/make_brand.py` draws the tennis-ball mark (`brand/mark.svg`), the favicons, app icons and the 1200x630 share image (`images/og-image.png`) and one share image per town (`images/og/<slug>.jpg`) with headless Chrome, the self-hosted fonts and Pillow. Re-run it after changing the colours, price or brand name.
 
 ## Custom domain
 

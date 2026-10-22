@@ -13,7 +13,8 @@
   "kicker": "1-on-1 private lessons",
   "intro": "Looking to take your game to the next level? Get a fresh perspective on your technique.",
   "price": 35,
-  "_price_help": "Lesson price in whole US dollars. Changes the price card, the share description and the search listing (priceRange). Also update the $35 in \"description\" above.",
+  "meta_description": "1-on-1 private tennis lessons with PTR Certified coach Lucas Oskwarek. $35 per hour, all levels, kids and adults. Middlebury, Southbury & Greater Waterbury, CT.",
+  "_price_help": "Lesson price in whole US dollars. Changes the price card, the share description and the search listing (priceRange). Also update the $35 in \"description\" and \"meta_description\" above.",
   "lesson_length": "1-hour lesson",
   "offer_notes": [
     "Flexible scheduling",
@@ -72,9 +73,15 @@
   "area_cities": [
     "Middlebury",
     "Southbury",
-    "Waterbury"
+    "Waterbury",
+    "Woodbury",
+    "Oxford",
+    "Naugatuck",
+    "Watertown",
+    "Cheshire",
+    "Prospect"
   ],
-  "_area_help": "areas = what visitors see. area_cities = town names given to search engines (areaServed).",
+  "_area_help": "areas = the short list shown in the hero, footer and title. area_cities = every town in the search listing (areaServed); town pages come from towns.json.",
   "form_endpoint": "https://formsubmit.co/8e6141005ff5c6d8439776617a1f4f33",
   "form_subject": "New lesson request - More Match Points",
   "form_captcha": true,
@@ -90,6 +97,12 @@
     "Middlebury",
     "Southbury",
     "Waterbury",
+    "Woodbury",
+    "Oxford",
+    "Naugatuck",
+    "Watertown",
+    "Cheshire",
+    "Prospect",
     "Other"
   ],
   "book_title": "Book your lesson",
@@ -151,6 +164,48 @@
     "Flexible scheduling",
     "All skill levels welcome"
   ],
-  "hero_intro": "1-on-1 private lessons with Lucas Oskwarek. Get a fresh perspective on your technique.",
-  "hero_highlight": 2
+  "hero_intro": "Private tennis lessons with Lucas Oskwarek, a PTR Certified tennis coach. Get a fresh perspective on your technique.",
+  "hero_highlight": 2,
+  "xp_intro": "From beginner tennis lessons to high school and USTA match prep, this is the experience behind every lesson.",
+  "price_intro": "No packages to figure out. Every lesson is a full hour, 1-on-1 with Lucas, for kids, teens and adults.",
+  "area_title": "Where I teach",
+  "area_intro": "Private tennis lessons in Middlebury, Southbury, Greater Waterbury and nearby towns. Lessons are at a local public court arranged when you book. Pick your town for local details.",
+  "faq": [
+    {
+      "q": "How long is a lesson, and how much does it cost?",
+      "a": "Every lesson is a 1-on-1 private lesson that lasts one hour and costs $35. There is one simple rate, with flexible scheduling."
+    },
+    {
+      "q": "What should I bring?",
+      "a": "Bring a tennis racquet if you have one, a water bottle, and court shoes or athletic sneakers with good grip for side-to-side movement. Wear comfortable athletic clothes and dress for the weather. If you don't have a racquet yet, mention it in your lesson request."
+    },
+    {
+      "q": "What skill levels do you teach?",
+      "a": "All skill levels are welcome, from complete beginners who have never held a racquet to experienced high school, league and tournament players who want to sharpen specific shots or strategy."
+    },
+    {
+      "q": "Do you teach kids, adults, or both?",
+      "a": "Both. Lucas coached children ages 6 to 12 in tennis fundamentals as an assistant coach at the Highfield Country Club kids summer camps from 2022 to 2024, and teens and adults are just as welcome. For young players, please include the player's age in your lesson request."
+    },
+    {
+      "q": "Where do lessons take place?",
+      "a": "Lessons are held at a local public tennis court in the service area, which covers Middlebury, Southbury, Greater Waterbury and nearby towns. The exact court is confirmed with you when your lesson is booked."
+    },
+    {
+      "q": "What happens if it rains?",
+      "a": "If the weather makes the court unplayable, your lesson is rescheduled at no charge. The details are agreed when you book."
+    },
+    {
+      "q": "How does booking work?",
+      "a": "Send the lesson request form with your skill level, town and preferred times. Lucas gets back to you to confirm a time and a court. Then you show up and play a full hour, 1-on-1."
+    },
+    {
+      "q": "Which towns do you serve?",
+      "a": "Middlebury, Southbury, Waterbury, Woodbury, Oxford, Naugatuck, Watertown, Cheshire and Prospect, CT. If you are in a nearby town, choose Other on the request form and mention where you are."
+    }
+  ],
+  "_faq_help": "FAQ page (/faq/) and the home FAQ block (first home_faq_count questions). Keep answers truthful; the rain answer needs Noah's confirmation.",
+  "home_faq_count": 4,
+  "reviews": [],
+  "_reviews_help": "Real reviews only, shared with permission. Each: {\"name\": \"J.D.\" or first name, \"text\": \"...\", \"date\": \"YYYY-MM-DD\"}. Empty = the section is not rendered at all. See README."
 }

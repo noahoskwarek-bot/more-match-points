@@ -3,8 +3,8 @@
   "name": "More Match Points",
   "_name_help": "Brand name: header wordmark, page titles, share image, manifest, footer and the search listing. Lucas is listed as the coach.",
   "coach": "Lucas Oskwarek",
-  "base_url": "https://noahoskwarek-bot.github.io/more-match-points",
-  "_base_help": "Full site address with no trailing slash. When morematchpoints.com is pointed at GitHub Pages, change this to https://www.morematchpoints.com (or the bare domain), add a CNAME file and rebuild.",
+  "base_url": "https://morematchpoints.com",
+  "_base_help": "Full site address with no trailing slash (custom domain morematchpoints.com, set in the repo's Pages settings; build.py writes the CNAME file from this).",
   "title": "More Match Points | Private Tennis Lessons in Middlebury & Southbury, CT",
   "description": "More Match Points: 1-on-1 private tennis lessons with PTR Certified instructor Lucas Oskwarek. $35 per 1-hour lesson, flexible scheduling, all skill levels. Serving Middlebury, Southbury and Greater Waterbury, CT.",
   "header_top": "PTR Certified",
@@ -27,19 +27,22 @@
     "Top 30 USTA Ranking in Connecticut",
     "PTR Certified Tennis Instructor"
   ],
-  "_why_help": "Wording copied from Lucas's flyer (the newest source).",
+  "_why_help": "Flyer wording, kept for reference: every line appears on the page through stats and experience.",
   "experience": [
     {
-      "title": "Assistant Coach, Kids Summer Camps",
-      "where": "Highfield Country Club · Middlebury, CT",
-      "when": "June 2022 – August 2024",
+      "tag": "Coaching",
+      "title": "Assistant Coach",
+      "where": "Fairfield County Tennis · Highfield Country Club",
+      "when": "",
       "points": [
-        "Coached children ages 6–12 in tennis fundamentals, fostering skill development and teamwork",
-        "Planned and led daily activities for campers"
+        "Experienced Assistant Coach — Fairfield County Tennis",
+        "Assistant Coach, Kids Summer Camps at Highfield Country Club, Middlebury, CT (June 2022 – August 2024)",
+        "Coached children ages 6–12 in tennis fundamentals, fostering skill development and teamwork"
       ]
     },
     {
-      "title": "Varsity Tennis, Pomperaug High School",
+      "tag": "Varsity",
+      "title": "Pomperaug High School",
       "where": "Southbury, CT",
       "when": "2023 – present",
       "points": [
@@ -49,7 +52,8 @@
       ]
     },
     {
-      "title": "USTA Tournaments",
+      "tag": "USTA",
+      "title": "Tournament play",
       "where": "Connecticut",
       "when": "",
       "points": [
@@ -58,7 +62,7 @@
       ]
     }
   ],
-  "_experience_help": "From Lucas's resume. Leave \"when\" empty to hide the date.",
+  "_experience_help": "Experience cards (flyer + resume wording). tag = small label, leave \"when\" empty to hide the date.",
   "areas": [
     "Middlebury",
     "Southbury",
@@ -93,5 +97,60 @@
   "_book_help": "The lesson request form is the only contact method on the site (no phone or email is published).",
   "short_name": "More Match Points",
   "brand_sub": "PTR Certified Tennis Instruction",
-  "footer_line": "Private tennis lessons with Lucas Oskwarek, PTR Certified"
+  "footer_line": "Private tennis lessons with Lucas Oskwarek, PTR Certified",
+  "hero_eyebrow": "PTR Certified Tennis Instruction",
+  "hero_lines": [
+    "Take your",
+    "game to",
+    "the next",
+    "level."
+  ],
+  "_hero_help": "hero_lines: the big headline, one entry per line (same words as tagline). hero_highlight = how many of the last lines are optic yellow.",
+  "hero_photo": null,
+  "hero_photo_alt": "",
+  "_hero_photo_help": "Action photo for the hero. null = the court illustration. To use a real photo: put it at images/lucas-action.jpg (about 1200x1400, portrait, under 300 KB), set hero_photo to \"images/lucas-action.jpg\" and write a short hero_photo_alt, then rebuild. See README.",
+  "stats": [
+    {
+      "big": "#1",
+      "label": "Singles",
+      "sub": "Former #1 Singles, Pomperaug High School Varsity"
+    },
+    {
+      "big": "SWC",
+      "label": "Champion",
+      "sub": "SWC Tournament Champion & undefeated season"
+    },
+    {
+      "big": "Top 30",
+      "label": "USTA CT",
+      "sub": "Top 30 USTA ranking in Connecticut"
+    },
+    {
+      "big": "PTR",
+      "label": "Certified",
+      "sub": "PTR Certified Tennis Instructor"
+    }
+  ],
+  "_stats_help": "The stat strip under the hero. Only real, checked facts from the flyer/resume.",
+  "steps": [
+    {
+      "title": "Request",
+      "text": "Send the lesson request below with your skill level, town and the times that work for you."
+    },
+    {
+      "title": "We confirm",
+      "text": "Lucas gets back to you to confirm a time and place for your lesson."
+    },
+    {
+      "title": "Play",
+      "text": "A full hour, 1-on-1, at your level."
+    }
+  ],
+  "price_points": [
+    "1-on-1 private lesson",
+    "Flexible scheduling",
+    "All skill levels welcome"
+  ],
+  "hero_intro": "1-on-1 private lessons with Lucas Oskwarek. Get a fresh perspective on your technique.",
+  "hero_highlight": 2
 }

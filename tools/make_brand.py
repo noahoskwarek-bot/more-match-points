@@ -1,56 +1,57 @@
 #!/usr/bin/env python3
 """Make the tennis-ball mark, favicons, app icons and the 1200x630 share image (images/og-image.png).
 
-No photos: everything is drawn from SVG/HTML and rendered with headless Chrome, then the .ico is made with Pillow.
+No photos: everything is drawn from SVG/HTML (tools/art.py) and rendered with headless Chrome using the
+self-hosted fonts in fonts/, then the .ico is made with Pillow.
     python3 tools/make_brand.py      # needs google-chrome (or chromium) and Pillow
-Re-run after changing colours, the price or the header text, then commit the files it writes.
+Re-run after changing colours, the price or the brand name, then commit the files it writes.
 """
-import json, os, shutil, subprocess, tempfile, html
+import html, json, os, shutil, subprocess, sys, tempfile
 from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-GREEN, DEEP, BALL, WHITE = '#1b5e20', '#0f3d17', '#c8f03c', '#ffffff'
+sys.path.insert(0, os.path.join(ROOT, 'tools'))
+import art  # noqa: E402
+from art import NAVY, OPTIC, WHITE  # noqa: E402
+
 site = json.load(open(os.path.join(ROOT, 'site.json'), encoding='utf-8'))
+FONTS = (f'@font-face{{font-family:Anton;src:url(file://{ROOT}/fonts/anton-latin.woff2)}}'
+         f'@font-face{{font-family:Inter;font-weight:400 800;src:url(file://{ROOT}/fonts/inter-latin-var.woff2)}}')
 
-
-def ball(cx=50, cy=50, r=46, seam=WHITE, outline=None):
-    """A tennis ball: yellow-green circle with two curved white seams, in a 100x100 box by default."""
-    k = r / 46
-    def X(v): return cx + (v - 50) * k
-    def Y(v): return cy + (v - 50) * k
-    o = f' stroke="{outline}" stroke-width="{3*k:.2f}"' if outline else ''
-    return (f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="{BALL}"{o}/>'
-            f'<g fill="none" stroke="{seam}" stroke-width="{6*k:.2f}" stroke-linecap="round">'
-            f'<path d="M{X(17):.2f} {Y(20):.2f}C{X(40):.2f} {Y(36):.2f} {X(40):.2f} {Y(64):.2f} {X(17):.2f} {Y(80):.2f}"/>'
-            f'<path d="M{X(83):.2f} {Y(20):.2f}C{X(60):.2f} {Y(36):.2f} {X(60):.2f} {Y(64):.2f} {X(83):.2f} {Y(80):.2f}"/></g>')
-
-
-MARK = f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">{ball(outline=GREEN)}</svg>\n'
-FAVICON = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="{GREEN}"/>'
-           f'{ball(50, 50, 36)}</svg>\n')
+MARK = f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">{art.ball(50, 50, 46, OPTIC, NAVY, 6)}</svg>\n'
+FAVICON = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="{NAVY}"/>'
+           f'{art.ball(50, 50, 34, OPTIC, NAVY, 5)}</svg>\n')
 
 
 def og_html():
     e = html.escape
     areas = ' · '.join(site['areas']) + ', ' + site['state']
-    return f'''<!doctype html><html><head><meta charset="utf-8"><style>
+    court = art.court_svg('court', ball_on=True)
+    return f'''<!doctype html><html><head><meta charset="utf-8"><style>{FONTS}
 html,body{{margin:0;width:1200px;height:630px;overflow:hidden}}
-body{{background:{GREEN};color:{WHITE};font-family:Oswald,"Inter",sans-serif;position:relative}}
-.band{{position:absolute;left:0;right:0;top:0;height:14px;background:{BALL}}}
-.wrap{{position:absolute;left:80px;top:56px;width:720px}}
-.top{{font-size:40px;letter-spacing:3px;text-transform:uppercase;color:{BALL};font-weight:600}}
-h1{{font-size:100px;line-height:1;margin:12px 0 22px;text-transform:uppercase;font-weight:700}}
-.price{{display:inline-block;background:{WHITE};color:{GREEN};font-size:48px;font-weight:700;padding:10px 28px;border-radius:12px;border-left:14px solid {BALL}}}
-.meta{{font-family:Montserrat,"Inter",sans-serif;font-size:27px;line-height:1.35;margin-top:24px;font-weight:600}}
-.phone{{font-size:38px;color:{BALL};margin-top:10px;font-weight:600}}
-svg{{position:absolute;right:70px;top:150px;width:340px;height:340px}}
-</style></head><body><div class="band"></div><div class="wrap">
-<div class="top">{e(site["brand_sub"])}</div>
-<h1>{e(site["name"])}</h1>
-<div class="price">${site["price"]} / {e(site["lesson_length"].upper())}</div>
-<div class="meta">Private tennis lessons with {e(site["coach"])}<br>{e(areas)}</div>
-<div class="phone">Request a lesson online</div></div>
-<svg viewBox="0 0 100 100">{ball(seam=GREEN)}</svg></body></html>'''
+body{{background:radial-gradient(90% 90% at 100% 0%,#18306f 0%,{NAVY} 60%);color:{WHITE};font-family:Inter,sans-serif;position:relative}}
+.art{{position:absolute;right:0;top:0;width:560px;height:630px;overflow:hidden}}
+.art svg{{width:100%;height:100%}}
+.art::after{{content:"";position:absolute;inset:0;background:linear-gradient(90deg,{NAVY} 0%,rgba(10,17,40,.75) 22%,rgba(10,17,40,0) 55%)}}
+.court .ln{{fill:none;stroke:#fff;stroke-width:2.2;opacity:.92}}.court .mesh{{stroke:#fff;stroke-opacity:.16}}
+.court .netfill{{fill:#060b1c;fill-opacity:.55}}.court .tape{{fill:none;stroke:#fff;stroke-width:3.2}}.court .post{{stroke:#cfd6ea;stroke-width:3}}
+.court .arc{{fill:none;stroke:{OPTIC};stroke-width:2.4;stroke-dasharray:2 9;stroke-linecap:round}}.court .bounce{{fill:none;stroke:{OPTIC};stroke-width:1.6}}
+.wrap{{position:absolute;left:72px;top:64px;width:700px}}
+.brand{{display:flex;align-items:center;gap:14px;font-family:Anton;font-size:34px;letter-spacing:1.5px;text-transform:uppercase}}
+.brand svg{{width:44px;height:44px}}
+.eyebrow{{margin-top:54px;font-weight:800;font-size:20px;letter-spacing:4px;text-transform:uppercase;color:{OPTIC}}}
+h1{{font-family:Anton;font-weight:400;font-size:112px;line-height:.9;margin:16px 0 0;text-transform:uppercase}}
+h1 span{{color:{OPTIC}}}
+.row{{display:flex;align-items:center;gap:22px;margin-top:38px}}
+.price{{background:{OPTIC};color:{NAVY};font-weight:800;font-size:26px;padding:14px 26px;border-radius:999px;white-space:nowrap}}
+.meta{{font-size:22px;color:#cfd6ea;font-weight:600;line-height:1.35}}
+</style></head><body><div class="art">{court}</div><div class="wrap">
+<div class="brand"><svg viewBox="0 0 100 100">{art.ball(50, 50, 46, OPTIC, NAVY, 6)}</svg>{e(site["name"])}</div>
+<div class="eyebrow">{e(site["brand_sub"])}</div>
+<h1>Private tennis<br><span>lessons.</span></h1>
+<div class="row"><div class="price">${site["price"]} / {e(site["lesson_length"])}</div>
+<div class="meta">with {e(site["coach"])}<br>{e(areas)}</div></div>
+</div></body></html>'''
 
 
 def chrome():
@@ -65,15 +66,16 @@ def shot(markup, out, w, h):
         src = os.path.join(d, 'p.html')
         open(src, 'w', encoding='utf-8').write(markup)
         subprocess.run([chrome(), '--headless=new', '--disable-gpu', '--no-sandbox', '--hide-scrollbars',
+                        '--allow-file-access-from-files', '--virtual-time-budget=3000',
                         '--force-device-scale-factor=1', f'--window-size={w},{h}', f'--screenshot={out}',
                         '--default-background-color=00000000', 'file://' + src],
                        check=True, capture_output=True)
-    im = Image.open(out).convert('RGBA').crop((0, 0, w, h))
-    im.save(out, optimize=True)
+    Image.open(out).convert('RGBA').crop((0, 0, w, h)).save(out, optimize=True)
 
 
 def svg_page(svg, size):
-    return f'<!doctype html><html><body style="margin:0;background:transparent"><div style="width:{size}px;height:{size}px">{svg.replace("<svg ", f"<svg width=\"{size}\" height=\"{size}\" ")}</div></body></html>'
+    s = svg.replace('<svg ', f'<svg width="{size}" height="{size}" ', 1)
+    return f'<!doctype html><html><body style="margin:0;background:transparent"><div style="width:{size}px;height:{size}px">{s}</div></body></html>'
 
 
 def main():
@@ -81,7 +83,6 @@ def main():
     os.makedirs(os.path.join(ROOT, 'images'), exist_ok=True)
     open(os.path.join(ROOT, 'brand', 'mark.svg'), 'w').write(MARK)
     open(os.path.join(ROOT, 'favicon.svg'), 'w').write(FAVICON)
-    # app icons: full-bleed square (iOS rounds the corners itself)
     full = FAVICON.replace(' rx="22"', '')
     for name, size, svg in (('apple-touch-icon.png', 180, full), ('icon-192.png', 192, full), ('icon-512.png', 512, full),
                             ('brand/mark-512.png', 512, MARK)):

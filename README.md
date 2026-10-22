@@ -42,13 +42,13 @@ The price is set in one place: `"price"` in `site.json` (whole dollars, currentl
 2. Run `python3 tools/make_brand.py` so the share images (`images/og-image.png` and `images/og/*.jpg`) show the new price.
 3. Run `python3 build.py && python3 build.py --check`, then commit and push.
 
-## Lesson request form (FormSubmit)
+## Lesson request form (Formspree)
 
-- The endpoint is `form_endpoint` in `site.json`, currently FormSubmit's random-string alias (activated 2026-10-22), so no inbox address appears in the page.
-- **Activation:** FormSubmit sends a one-time activation email to that address on the first real submission. Nothing is delivered until someone clicks **Activate** in that email.
-- After activation, FormSubmit offers a random-string alias. Swap it in by setting `form_endpoint` to `https://formsubmit.co/<alias>` and rebuilding, which keeps the address out of the page source.
-- Fields sent (shown in the email table): `name`, `phone_or_email`, `skill_level`, `town`, `preferred_times`, `message`.
-  Hidden: `_subject` (`form_subject`), `_template=table`, `_captcha` (`form_captcha`), `_next` (the `/thanks/` page) and the `_honey` spam trap.
+- The endpoint is `form_endpoint` in `site.json`: a Formspree form endpoint (`https://formspree.io/f/<id>`). The inbox it delivers to is set in the Formspree dashboard, so no address appears in the page source.
+- Free plan: the Redirect URL setting is locked, so there is no `_next`. Instead `src/site.js` intercepts submit, POSTs the form with `Accept: application/json`, and goes to `/thanks/` on success or shows an inline error. Without JavaScript the form posts normally and Formspree shows its own thank-you page.
+- Spam: Formspree's Formshield filter is on, plus the hidden `_gotcha` honeypot field.
+- Fields sent: `name`, `phone_or_email`, `skill_level`, `town`, `preferred_times`, `message`.
+  Hidden: `_subject` (`form_subject`) and `_gotcha` (the spam trap).
 - Skill level and town choices are `skill_levels` and `form_towns` in `site.json`.
 - Set `form_endpoint` to `null` to hide the form.
 

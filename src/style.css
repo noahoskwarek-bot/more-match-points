@@ -183,6 +183,9 @@ input:focus,select:focus,textarea:focus{border-color:var(--optic);box-shadow:0 0
 input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
 .honey{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
 .form .btn{margin-top:6px}
+.form-err{margin:0 0 14px;padding:12px 14px;border-radius:12px;border:1px solid #ff8a8a;background:rgba(255,90,90,.12);color:#ffd2d2;font-size:15px}
+.form-err[hidden]{display:none}
+.form .btn[aria-busy=true]{opacity:.7;cursor:progress}
 /* footer */
 .foot{background:#060b1c;border-top:1px solid var(--hair-d);padding:44px 0 calc(110px + env(safe-area-inset-bottom));color:var(--mut-d);font-size:15px}
 .foot .wrap{display:grid;gap:14px}

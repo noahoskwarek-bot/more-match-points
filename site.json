@@ -90,10 +90,9 @@
     "Danbury"
   ],
   "_area_help": "area_line = the service-area line in the hero and footer; og_area = the shorter line on the share images. areas = short list (kept for reference). area_cities = every town in the search listing (areaServed); town pages, the Locations menu and the map come from towns.json. Use {towns} in text to list every town.",
-  "form_endpoint": "https://formsubmit.co/8e6141005ff5c6d8439776617a1f4f33",
+  "form_endpoint": "https://formspree.io/f/xpppabwz",
   "form_subject": "New lesson request - More Match Points",
-  "form_captcha": true,
-  "_form_help": "POST endpoint for the lesson request form (FormSubmit). Can be swapped for FormSubmit's random-string alias (https://formsubmit.co/<alias>) after activation. FormSubmit sends a one-time activation email to the address on the first real submission; someone must click Activate before requests arrive. null = the form is hidden and visitors use call/text/email.",
+  "_form_help": "POST endpoint for the lesson request form (Formspree form endpoint, https://formspree.io/f/<id>). The inbox address lives in the Formspree dashboard, never in the page. With JavaScript the form sends via fetch and goes to /thanks/; without it, Formspree shows its own thank-you page. null = the form is hidden.",
   "skill_levels": [
     "New to tennis",
     "Beginner",

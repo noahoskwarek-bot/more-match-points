@@ -226,14 +226,10 @@ def form():
         return ''
     skills = ''.join(f'<option>{e(x)}</option>' for x in S['skill_levels'])
     towns = ''.join(f'<option>{e(x)}</option>' for x in S['form_towns'])
-    cap = 'true' if S.get('form_captcha', True) else 'false'
     return f'''<form class="form" id="request-form" action="{e(S['form_endpoint'])}" method="POST" aria-labelledby="form-title">
 <h3 id="form-title">Lesson request</h3>
 <input type="hidden" name="_subject" value="{e(S['form_subject'])}">
-<input type="hidden" name="_template" value="table">
-<input type="hidden" name="_captcha" value="{cap}">
-<input type="hidden" name="_next" value="{BASE_URL}/thanks/">
-<div class="honey" aria-hidden="true"><label for="f-honey">Leave this empty</label><input id="f-honey" type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
+<div class="honey" aria-hidden="true"><label for="f-gotcha">Leave this empty</label><input id="f-gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
 <div class="grid2">
 <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
 <div class="field"><label for="f-contact">Phone or email</label><input id="f-contact" name="phone_or_email" type="text" autocomplete="email" inputmode="email" required aria-describedby="f-contact-hint"><span id="f-contact-hint" class="hint">Only used to reply about lessons.</span></div>
@@ -242,6 +238,7 @@ def form():
 </div>
 <div class="field"><label for="f-times">Preferred times <span class="hint">e.g. weekday afternoons, Saturday mornings</span></label><input id="f-times" name="preferred_times" type="text"></div>
 <div class="field"><label for="f-msg">Message <span class="hint">Optional: goals, age of the player, anything else</span></label><textarea id="f-msg" name="message" rows="4"></textarea></div>
+<p class="form-err" id="form-err" role="alert" tabindex="-1" hidden>Sorry, your request didn't go through. Please check your connection and try again in a moment.</p>
 <button class="btn optic block" type="submit">Send lesson request {ARROW}</button>
 </form>'''
 

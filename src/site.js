@@ -5,6 +5,13 @@ var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isInter
 document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});}
 var bar=document.getElementById('sticky'),req=document.getElementById('request');
 if(bar&&req&&'IntersectionObserver' in window){new IntersectionObserver(function(es){bar.classList.toggle('away',es[0].isIntersecting);},{threshold:0.05}).observe(req);}
+/* lesson form: send via fetch (Formspree JSON) and go to /thanks/; without JS the form posts normally. */
+var rf=document.getElementById('request-form');
+if(rf&&window.fetch&&window.FormData){var re=document.getElementById('form-err'),sb=rf.querySelector('button[type=submit]');
+rf.addEventListener('submit',function(ev){ev.preventDefault();if(re)re.hidden=true;if(sb){sb.disabled=true;sb.setAttribute('aria-busy','true');}
+fetch(rf.action,{method:'POST',body:new FormData(rf),headers:{'Accept':'application/json'}}).then(function(r){
+if(!r.ok)throw new Error(r.status);location.href='/thanks/';}).catch(function(){
+if(sb){sb.disabled=false;sb.removeAttribute('aria-busy');}if(re){re.hidden=false;re.focus();}});});}
 /* header nav: disclosure dropdowns (desktop) + hamburger panel (mobile). Without JS the plain links stay. */
 var top=document.getElementById('top'),burger=top&&top.querySelector('.burger'),nav=document.getElementById('site-nav');
 if(!top||!burger||!nav)return;

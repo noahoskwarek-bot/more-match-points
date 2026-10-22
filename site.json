@@ -5,7 +5,7 @@
   "coach": "Lucas Oskwarek",
   "base_url": "https://morematchpoints.com",
   "_base_help": "Full site address with no trailing slash (custom domain morematchpoints.com, set in the repo's Pages settings; build.py writes the CNAME file from this).",
-  "title": "More Match Points | Private Tennis Lessons in Middlebury & Southbury, CT",
+  "title": "More Match Points | Tennis Lessons, Waterbury to Danbury, CT",
   "description": "More Match Points: 1-on-1 private tennis lessons with PTR Certified instructor Lucas Oskwarek. {price} per 1-hour lesson, flexible scheduling, all skill levels. Serving Greater Waterbury through Newtown, Monroe, Redding and Danbury, CT.",
   "header_top": "PTR Certified",
   "header_bottom": "Tennis Instruction",
@@ -13,7 +13,7 @@
   "kicker": "1-on-1 private lessons",
   "intro": "Looking to take your game to the next level? Get a fresh perspective on your technique.",
   "price": 45,
-  "meta_description": "1-on-1 private tennis lessons with PTR Certified coach Lucas Oskwarek. {price} per hour, all levels, kids and adults. Greater Waterbury to Danbury, CT.",
+  "meta_description": "Private tennis lessons with PTR Certified coach Lucas Oskwarek, {price}/hr, all levels. Middlebury, Southbury, Waterbury, Woodbury, Cheshire, Newtown, Danbury & more.",
   "_price_help": "THE lesson price, in whole US dollars: the only place it is set. Any text in site.json or towns.json can say {price} and the build fills in e.g. $45 (hero, price cards, schema Offer, meta descriptions, FAQ, town pages). After changing it run python3 tools/make_brand.py (share images) and rebuild.",
   "lesson_length": "1-hour lesson",
   "offer_notes": [

@@ -1,0 +1,93 @@
+{
+  "_help": "All site text lives here. Edit, then run: python3 build.py && python3 build.py --check. See README.md.",
+  "name": "Lucas Oskwarek Tennis",
+  "coach": "Lucas Oskwarek",
+  "base_url": "https://noahoskwarek-bot.github.io/lucas-tennis",
+  "_base_help": "Full site address with no trailing slash. If a custom domain is added later, change this to e.g. https://www.example.com and add a CNAME file.",
+  "title": "Private Tennis Lessons in Middlebury & Southbury, CT | Lucas Oskwarek",
+  "description": "1-on-1 private tennis lessons with PTR Certified instructor Lucas Oskwarek. $35 per 1-hour lesson, flexible scheduling, all skill levels. Serving Middlebury, Southbury and Greater Waterbury, CT.",
+  "header_top": "PTR Certified",
+  "header_bottom": "Tennis Instruction",
+  "tagline": "Take your game to the next level.",
+  "kicker": "1-on-1 private lessons",
+  "intro": "Looking to take your game to the next level? Get a fresh perspective on your technique.",
+  "price": 35,
+  "_price_help": "Lesson price in whole US dollars. Changes the price card, the share description and the search listing (priceRange). Also update the $35 in \"description\" above.",
+  "lesson_length": "1-hour lesson",
+  "offer_notes": [
+    "Flexible scheduling",
+    "All skill levels welcome"
+  ],
+  "why_title": "Why train with Lucas?",
+  "why": [
+    "Former #1 Singles — Pomperaug High School Varsity",
+    "SWC Tournament Champion & Undefeated Season",
+    "Experienced Assistant Coach — Fairfield County Tennis",
+    "Top 30 USTA Ranking in Connecticut",
+    "PTR Certified Tennis Instructor"
+  ],
+  "_why_help": "Wording copied from Lucas's flyer (the newest source).",
+  "experience": [
+    {
+      "title": "Assistant Coach, Kids Summer Camps",
+      "where": "Highfield Country Club · Middlebury, CT",
+      "when": "June 2022 – August 2024",
+      "points": [
+        "Coached children ages 6–12 in tennis fundamentals, fostering skill development and teamwork",
+        "Planned and led daily activities for campers"
+      ]
+    },
+    {
+      "title": "Varsity Tennis, Pomperaug High School",
+      "where": "Southbury, CT",
+      "when": "2023 – present",
+      "points": [
+        "#1 singles, 2025",
+        "Undefeated season as #3 singles, 2024",
+        "Southwest Conference (SWC) Tournament: 1st place 2023, runner-up 2024"
+      ]
+    },
+    {
+      "title": "USTA Tournaments",
+      "where": "Connecticut",
+      "when": "",
+      "points": [
+        "Won multiple USTA tournaments",
+        "Top 30 USTA ranking in Connecticut"
+      ]
+    }
+  ],
+  "_experience_help": "From Lucas's resume. Leave \"when\" empty to hide the date.",
+  "areas": [
+    "Middlebury",
+    "Southbury",
+    "Greater Waterbury"
+  ],
+  "state": "CT",
+  "area_cities": [
+    "Middlebury",
+    "Southbury",
+    "Waterbury"
+  ],
+  "_area_help": "areas = what visitors see. area_cities = town names given to search engines (areaServed).",
+  "form_endpoint": "https://formsubmit.co/lnotennis+lucas-lessons@mail.grokbot.com",
+  "form_subject": "New lesson request - Lucas Tennis",
+  "form_captcha": true,
+  "_form_help": "POST endpoint for the lesson request form (FormSubmit). Can be swapped for FormSubmit's random-string alias (https://formsubmit.co/<alias>) after activation. FormSubmit sends a one-time activation email to the address on the first real submission; someone must click Activate before requests arrive. null = the form is hidden and visitors use call/text/email.",
+  "skill_levels": [
+    "New to tennis",
+    "Beginner",
+    "Intermediate",
+    "Advanced / competitive",
+    "Not sure"
+  ],
+  "form_towns": [
+    "Middlebury",
+    "Southbury",
+    "Waterbury",
+    "Other"
+  ],
+  "book_title": "Book your lesson",
+  "book_text": "Send a lesson request with your preferred times and skill level, and Lucas will get back to you to set up your first lesson.",
+  "_book_help": "The lesson request form is the only contact method on the site (no phone or email is published)."
+}

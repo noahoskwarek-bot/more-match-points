@@ -70,7 +70,7 @@
     "Waterbury"
   ],
   "_area_help": "areas = what visitors see. area_cities = town names given to search engines (areaServed).",
-  "form_endpoint": "https://formsubmit.co/lnotennis+lucas-lessons@mail.grokbot.com",
+  "form_endpoint": "https://formsubmit.co/8e6141005ff5c6d8439776617a1f4f33",
   "form_subject": "New lesson request - Lucas Tennis",
   "form_captcha": true,
   "_form_help": "POST endpoint for the lesson request form (FormSubmit). Can be swapped for FormSubmit's random-string alias (https://formsubmit.co/<alias>) after activation. FormSubmit sends a one-time activation email to the address on the first real submission; someone must click Activate before requests arrive. null = the form is hidden and visitors use call/text/email.",

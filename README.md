@@ -37,7 +37,7 @@ Styles are in `src/style.css` (inlined into each page by the build). No JavaScri
 
 ## Lesson request form (FormSubmit)
 
-- The endpoint is `form_endpoint` in `site.json`, currently `https://formsubmit.co/lnotennis+lucas-lessons@mail.grokbot.com`.
+- The endpoint is `form_endpoint` in `site.json`, currently FormSubmit's random-string alias (activated 2026-10-22), so no inbox address appears in the page.
 - **Activation:** FormSubmit sends a one-time activation email to that address on the first real submission. Nothing is delivered until someone clicks **Activate** in that email.
 - After activation, FormSubmit offers a random-string alias. Swap it in by setting `form_endpoint` to `https://formsubmit.co/<alias>` and rebuilding, which keeps the address out of the page source.
 - Fields sent (shown in the email table): `name`, `phone_or_email`, `skill_level`, `town`, `preferred_times`, `message`.

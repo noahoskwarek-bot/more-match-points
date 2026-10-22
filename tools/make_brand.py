@@ -25,7 +25,7 @@ FAVICON = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect
 
 def og_html(town=None):
     e = html.escape
-    areas = ' · '.join(site['areas']) + ', ' + site['state']
+    areas = site.get('og_area') or site.get('area_line')
     court = art.court_svg('court', ball_on=True)
     headline = (f'<h1 class="t">Tennis lessons in<br><span>{e(town)}, CT</span></h1>' if town
                 else '<h1>Private tennis<br><span>lessons.</span></h1>')

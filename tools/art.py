@@ -83,15 +83,24 @@ def court_svg(cls='court', title=None, ball_on=True):
             f'<g class="lines">{"".join(L)}</g><g class="net">{net}</g>{art}</svg>')
 
 
-# lesson area: towns from towns.json (lon/lat) projected into a 480x340 box. Stylised diagram, not a map.
-def _xy(lon, lat):
-    return (34 + (lon + 73.25) / 0.38 * 412, 312 - (lat - 41.41) / 0.22 * 276)
+# lesson area: towns from towns.json (lon/lat) fitted into a 480x340 box. Stylised diagram, not a map.
+def _fit(towns, w=480, h=340, px=70, py=46):
+    import math
+    k = math.cos(math.radians(41.45))
+    xs = [t['lon'] * k for t in towns]; ys = [t['lat'] for t in towns]
+    s = min((w - 2 * px) / (max(xs) - min(xs)), (h - 2 * py) / (max(ys) - min(ys)))
+    ox = (w - s * (max(xs) - min(xs))) / 2; oy = (h - s * (max(ys) - min(ys))) / 2
+    return lambda lon, lat: (ox + (lon * k - min(xs)) * s, h - oy - (lat - min(ys)) * s)
 
 
 def area_svg(towns, hub='Middlebury'):
-    pts = {t['name']: _xy(t['lon'], t['lat']) for t in towns}
+    if all(t.get('map') for t in towns):
+        pts = {t['name']: tuple(t['map']) for t in towns}
+    else:
+        xy = _fit(towns, h=360)
+        pts = {t['name']: xy(t['lon'], t['lat']) for t in towns}
     hx, hy = pts[hub]
-    rings = ''.join(f'<circle cx="{hx:.0f}" cy="{hy:.0f}" r="{r}" class="ring"/>' for r in (80, 160, 240))
+    rings = ''.join(f'<circle cx="{hx:.0f}" cy="{hy:.0f}" r="{r}" class="ring"/>' for r in (70, 140, 210, 280))
     spokes = ''.join(f'<path class="link" pathLength="1" d="M{hx:.0f} {hy:.0f}L{x:.0f} {y:.0f}"/>'
                      for n, (x, y) in pts.items() if n != hub)
     dots = ''
@@ -110,5 +119,5 @@ def area_svg(towns, hub='Middlebury'):
         dots += (f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{9 if big else 7}" class="dot{big}"/>'
                  f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{18 if big else 14}" class="halo"/>'
                  f'<text x="{tx:.0f}" y="{ty:.0f}" text-anchor="{a}">{t["name"]}</text>')
-    return (f'<svg class="area-art" viewBox="0 0 480 340" aria-hidden="true" focusable="false">'
-            f'<g class="grid">{rings}<path d="M0 {hy:.0f}H480M{hx:.0f} 0V340" class="axis"/></g>{spokes}{dots}</svg>')
+    return (f'<svg class="area-art" viewBox="0 0 480 360" aria-hidden="true" focusable="false">'
+            f'<g class="grid">{rings}<path d="M0 {hy:.0f}H480M{hx:.0f} 0V360" class="axis"/></g>{spokes}{dots}</svg>')

@@ -1,129 +1,288 @@
 {
-  "_help": "Town landing pages (/tennis-lessons/<slug>/). Each town needs unique copy (150-300 words). _court_sources are not shown on the page: they record where each court/park mention was verified (official town Parks & Recreation pages, checked 2026-10-22). Never promise lessons at a specific facility.",
-  "towns": [
-    {
-      "name": "Middlebury",
-      "slug": "middlebury-ct",
-      "lon": -73.1276, "lat": 41.5276, "label": "middle-below",
-      "lede": "Private tennis lessons in Middlebury, CT with PTR Certified tennis coach Lucas Oskwarek: 1-on-1, a full hour, $35.",
-      "body": [
-        "Middlebury sits right in the middle of the More Match Points lesson area, which makes it one of the easiest towns to fit into the schedule. Whether you are picking up a racquet for the first time or getting ready for a high school or USTA season, every lesson is a full hour of 1-on-1 work built around your game, not a group drill where you wait in line for your turn.",
-        "Lucas already has coaching miles in Middlebury. From June 2022 to August 2024 he was an assistant coach at the Highfield Country Club kids summer camps, teaching tennis fundamentals to children ages 6 to 12 and planning their daily activities. That experience carries straight into tennis lessons for kids, and adults who are new to the game, or coming back to it after a few years off, are just as welcome.",
-        "Lessons are held at a local public court that you agree on when you book, so no club membership is needed. Pick your skill level and the times that suit you on the request form, and Lucas will get back to you to confirm the court and the time."
-      ],
-      "courts": null,
-      "_court_sources": "Not verified on an official Middlebury page this session (middleburyct.gov Parks & Recreation page lists no courts), so the copy stays general."
-    },
-    {
-      "name": "Southbury",
-      "slug": "southbury-ct",
-      "lon": -73.2132, "lat": 41.4815, "label": "middle-below",
-      "lede": "1-on-1 tennis lessons in Southbury, CT for beginners, high school players and adults, from a Pomperaug varsity player and PTR Certified instructor.",
-      "body": [
-        "Southbury is home to Pomperaug High School, where Lucas has played varsity tennis since 2023. He earned the #1 singles spot in 2025, went undefeated at #3 singles in 2024, and placed 1st at the Southwest Conference (SWC) Tournament in 2023. If you are a Southbury player hoping to make a school team, or you want an edge in conference matches, private lessons let you work on exactly what is holding your game back.",
-        "It is not only for competitive juniors. Beginner tennis lessons, a refresher for adults, or a parent and child who want to start playing together all fit the same simple format: one coach, one player, one hour.",
-        "The town's Parks & Recreation department lists public tennis courts at Ballantine Park on Old Field Road and at Community Park on Community House Road, and Southbury courts can be reserved through the town. Your lesson happens at a local public court that is arranged when you book, and Lucas will confirm the details with you."
-      ],
-      "courts": ["Ballantine Park (Old Field Road)", "Community Park (Community House Road)"],
-      "_court_sources": "https://www.southbury-ct.org/athleticfacilities (Ballantine Park: 3 tennis courts); https://southburyct.myrec.com/info/facilities/ (Ballantine Park and Community Park tennis courts, reservable)"
-    },
-    {
-      "name": "Waterbury",
-      "slug": "waterbury-ct",
-      "lon": -73.0515, "lat": 41.5582, "label": "start",
-      "lede": "Private tennis lessons across Greater Waterbury, CT: a PTR Certified coach, $35 for a full hour, scheduled around you.",
-      "body": [
-        "Waterbury is a great city to learn tennis in. According to the City of Waterbury's Bureau of Recreation, its parks and recreation centers include more than 40 tennis courts, with public courts at parks such as Chase Park and Bucks Hill Park. With that many courts around, it is easy to keep practicing between lessons.",
-        "More Match Points brings 1-on-1 coaching to Greater Waterbury players of every level. Lucas is a PTR Certified tennis instructor with a Top 30 USTA ranking in Connecticut and multiple USTA tournament wins, so lessons can go from the basics of grip and footwork all the way to point construction and match play.",
-        "Lessons take place at a local public court that is agreed when you book; no specific facility is promised in advance. Tennis lessons for kids and adults are both welcome. Tell us the player's age, skill level and preferred times on the request form, and Lucas will confirm a court and a time.",
-        "Each private lesson is $35 for one hour, with flexible scheduling and no packages to buy."
-      ],
-      "courts": ["Chase Park", "Bucks Hill Park"],
-      "_court_sources": "https://www.waterburyct.org/services/public-works/recreation (over 40 tennis courts); https://waterburyct.myrec.com/info/facilities/default.aspx (Chase Park tennis courts 1-4, Bucks Hill Park tennis courts 1-3); https://waterburyct.myrec.com/info/facilities/details.aspx?FacilityID=14717 (Chase Park)"
-    },
-    {
-      "name": "Woodbury",
-      "slug": "woodbury-ct",
-      "lon": -73.2090, "lat": 41.5445, "label": "middle-above",
-      "lede": "Tennis lessons in Woodbury, CT: 1-on-1 coaching for new players, returning players and juniors, $35 per hour.",
-      "body": [
-        "Woodbury players looking for private tennis lessons can book a 1-on-1 session with Lucas Oskwarek, a PTR Certified tennis instructor and former #1 singles player for Pomperaug High School Varsity.",
-        "Maybe you already play a little and want to fix one thing: a forehand that floats long, a serve that only works on good days, or footwork that leaves you late to the ball. A private lesson is the fastest way to get specific help, because the whole hour is spent on your strokes and your questions. Complete beginners are welcome too, and the first lesson starts wherever you are.",
-        "Woodbury Parks & Recreation lists tennis courts at Woodbury Middle School on Washington Avenue among its town facilities. Lessons themselves happen at a local public court that is arranged when you book, so let us know on the request form which part of town works best for you.",
-        "Every lesson is $35 for one hour, with flexible scheduling for school, work and weekend plans. Juniors, adults and families are all welcome."
-      ],
-      "courts": ["Woodbury Middle School tennis courts (Washington Avenue)"],
-      "_court_sources": "https://woodburyct.myrec.com/info/facilities/ (Woodbury Parks & Recreation facility list: Woodbury Middle School - Tennis Courts, 67 Washington Ave)"
-    },
-    {
-      "name": "Oxford",
-      "slug": "oxford-ct",
-      "lon": -73.1165, "lat": 41.4340, "label": "start",
-      "lede": "Private tennis lessons in Oxford, CT for kids, teens and adults, with a PTR Certified coach and a simple $35 hourly rate.",
-      "body": [
-        "Oxford families have good reasons to get out on the court. Oxford Parks & Recreation lists Ryan's Courts, the town tennis courts across from Quaker Farms School on Great Oak Road, and Posypanko Park on Hawkins Road, which has tennis courts along with pickleball courts and ball fields.",
-        "If you have a child who has started swinging a racquet, tennis lessons for kids are a great way to build coordination and confidence. Lucas spent three summers as an assistant coach at the Highfield Country Club kids summer camps, coaching ages 6 to 12 in tennis fundamentals. Teens and adults get the same full hour of individual attention, whether the goal is a first rally or a stronger second serve.",
-        "Lessons are held at a local public court arranged when you book; we never promise a particular facility ahead of time. Use the request form to share the player's age, skill level and the days that work, and Lucas will reply to set things up.",
-        "Every private lesson is $35 for one hour, with flexible scheduling and all skill levels welcome."
-      ],
-      "courts": ["Ryan's Courts (Great Oak Road)", "Posypanko Park (Hawkins Road)"],
-      "_court_sources": "https://oxfordct.myrec.com/info/facilities/details.aspx?FacilityID=14495 (Ryans Courts: town tennis courts across from Quaker Farms School, Great Oak Road); https://oxfordct.myrec.com/info/facilities/details.aspx?FacilityID=9674 (Posypanko Park: ball fields, tennis courts, pickleball courts, batting cage)"
-    },
-    {
-      "name": "Naugatuck",
-      "slug": "naugatuck-ct",
-      "lon": -73.0507, "lat": 41.4859, "label": "middle-below",
-      "lede": "1-on-1 tennis lessons in Naugatuck, CT: a fresh set of eyes on your technique from a PTR Certified instructor.",
-      "body": [
-        "Sometimes all your game needs is a fresh perspective. Private tennis lessons in Naugatuck give you a full hour with Lucas Oskwarek, a PTR Certified tennis instructor, Top 30 USTA-ranked player in Connecticut and SWC Tournament champion, looking only at your strokes, your movement and your match habits.",
-        "The Borough of Naugatuck's list of park and recreation areas includes Linden Park on North Main Street, with four tennis courts alongside a playground, basketball court and soccer field. Public courts like these make it easy to practice what you work on in a lesson.",
-        "Lessons take place at a local public court that is agreed when you book, not at a facility promised in advance. Beginner tennis lessons are a great place to start if you have never played, and experienced players can focus on specific shots, strategy or getting ready for league and tournament play.",
-        "Each lesson is $35 for one hour. Send a request with your skill level and preferred times, and Lucas will get back to you to confirm."
-      ],
-      "courts": ["Linden Park (North Main Street)"],
-      "_court_sources": "https://www.naugatuck-ct.gov/filestorage/119/364/409/NAUGATUCK_PARK_AND_RECREATION_AREAS_2020.pdf (Linden Park, 155 N Main St: tennis courts (4))"
-    },
-    {
-      "name": "Watertown",
-      "slug": "watertown-ct",
-      "lon": -73.1182, "lat": 41.6062, "label": "start",
-      "lede": "Private tennis lessons in Watertown, CT, scheduled around school, work and weekends: $35 for a 1-on-1 hour.",
-      "body": [
-        "Busy schedule? Private tennis lessons in Watertown are built around it. Instead of signing up for a fixed weekly clinic, you tell us which days and times are realistic, and lessons are scheduled with that in mind.",
-        "Your coach is Lucas Oskwarek, a PTR Certified tennis instructor, former #1 singles player at Pomperaug High School and experienced assistant coach. Lessons work for complete beginners learning to keep a rally going, for high school players chasing a varsity spot, and for adults who want to play better doubles with friends.",
-        "Watertown's recreation department lists the Crestbrook Park tennis courts on Northfield Road among its reservable town facilities. Lessons themselves happen at a local public court that is arranged when you book, so we will confirm the location with you rather than promise one up front.",
-        "Every lesson is 1-on-1 for a full hour at $35. Kids and adults of all skill levels are welcome; just include the player's age and level on the request form."
-      ],
-      "courts": ["Crestbrook Park tennis courts (Northfield Road)"],
-      "_court_sources": "https://watertownct.myrec.com/info/facilities/default.aspx (Crestbrook Park Tennis Courts, 834 Northfield Rd., reservable)"
-    },
-    {
-      "name": "Cheshire",
-      "slug": "cheshire-ct",
-      "lon": -72.9007, "lat": 41.4990, "label": "middle-below",
-      "lede": "Tennis lessons for Cheshire, CT players: 1-on-1 coaching from a PTR Certified instructor, $35 per hour.",
-      "body": [
-        "Cheshire sits on the eastern edge of the More Match Points lesson area, and players from town are welcome to request private tennis lessons. When you send a request, include Cheshire as your town and your preferred times, and Lucas will let you know what he can offer before anything is booked.",
-        "The Town of Cheshire's recreation department lists tennis courts at Cheshire Park on Highland Avenue, next to its pickleball courts and pavilion. Lessons are held at a local public court that is arranged when you book; no particular facility is promised in advance.",
-        "What you get is simple: one hour, one coach, one player. Lucas is a PTR Certified tennis instructor with a Top 30 USTA ranking in Connecticut, and he has coached children ages 6 to 12 at kids summer camps, so tennis lessons for kids are as welcome as sessions for high school players and adults. Beginners can start with grips, footwork and rallying, while experienced players can dig into serves, returns and match strategy.",
-        "Each private lesson costs $35 for one hour, with flexible scheduling and all skill levels welcome."
-      ],
-      "courts": ["Cheshire Park (Highland Avenue)"],
-      "_court_sources": "https://cheshirect.myrec.com/info/facilities/details.aspx?FacilityID=14712 (Cheshire Park, 1000 Highland Ave.: Tennis Courts 1-3, pickleball courts, pavilion)"
-    },
-    {
-      "name": "Prospect",
-      "slug": "prospect-ct",
-      "lon": -72.9787, "lat": 41.5023, "label": "middle-above",
-      "lede": "Private tennis lessons in Prospect, CT: beginner to advanced, kids to adults, 1-on-1 for $35 an hour.",
-      "body": [
-        "Tennis is a sport you can keep playing for life, and a private lesson is one of the quickest ways to build the basics or sharpen a game you already have. Private tennis lessons give Prospect players a full hour of 1-on-1 coaching with Lucas Oskwarek, a PTR Certified tennis instructor and SWC Tournament champion with Pomperaug High School.",
-        "Prospect Parks and Recreation lists tennis courts at Canfield Park on Coer Road. Lessons happen at a local public court that is arranged when you book, so share your preferred days and times on the request form and Lucas will confirm the location and time with you.",
-        "Every lesson starts from where the player is. For a beginner that might mean holding the racquet, tracking the ball and getting a first rally going. For a more experienced player it could be a reliable second serve, better court positioning or practicing patterns for match play. Parents booking tennis lessons for kids can mention the player's age in the request message.",
-        "Lessons are $35 for one hour, with flexible scheduling and all skill levels welcome."
-      ],
-      "courts": ["Canfield Park (Coer Road)"],
-      "_court_sources": "https://prospectct.myrec.com/info/facilities/details.aspx?FacilityID=14697 (Canfield Park, 36 Coer Rd.: Multi-purpose Field, Tennis Courts)"
-    }
-  ]
+ "_help": "Town landing pages (/tennis-lessons/<slug>/). Each town needs unique copy (150-300 words). _court_sources are not shown on the page: they record where each court/park mention was verified (official town Parks & Recreation pages, checked 2026-10-22). Never promise lessons at a specific facility. where_note (optional) replaces the 'Where lessons happen' box text, e.g. when the town's courts don't allow private lessons. _fact_sources record where other local facts were checked. Use {price} for the lesson price. map = [x, y] position on the 480x360 'Where I teach' diagram (stylised, roughly geographic); label = start | end | middle-above | middle-below.",
+ "towns": [
+  {
+   "name": "Middlebury",
+   "slug": "middlebury-ct",
+   "lon": -73.1276,
+   "lat": 41.5276,
+   "label": "middle-above",
+   "lede": "Private tennis lessons in Middlebury, CT with PTR Certified tennis coach Lucas Oskwarek: 1-on-1, a full hour, {price}.",
+   "body": [
+    "Middlebury sits right in the middle of the More Match Points lesson area, which makes it one of the easiest towns to fit into the schedule. Whether you are picking up a racquet for the first time or getting ready for a high school or USTA season, every lesson is a full hour of 1-on-1 work built around your game, not a group drill where you wait in line for your turn.",
+    "Lucas already has coaching miles in Middlebury. From June 2022 to August 2024 he was an assistant coach at the Highfield Country Club kids summer camps, teaching tennis fundamentals to children ages 6 to 12 and planning their daily activities. That experience carries straight into tennis lessons for kids, and adults who are new to the game, or coming back to it after a few years off, are just as welcome.",
+    "Lessons are held at a local public court that you agree on when you book, so no club membership is needed. Pick your skill level and the times that suit you on the request form, and Lucas will get back to you to confirm the court and the time."
+   ],
+   "courts": null,
+   "_court_sources": "Not verified on an official Middlebury page this session (middleburyct.gov Parks & Recreation page lists no courts), so the copy stays general.",
+   "map": [
+    285,
+    150
+   ]
+  },
+  {
+   "name": "Southbury",
+   "slug": "southbury-ct",
+   "lon": -73.2132,
+   "lat": 41.4815,
+   "label": "end",
+   "lede": "1-on-1 tennis lessons in Southbury, CT for beginners, high school players and adults, from a Pomperaug varsity player and PTR Certified instructor.",
+   "body": [
+    "Southbury is home to Pomperaug High School, where Lucas has played varsity tennis since 2023. He earned the #1 singles spot in 2025, went undefeated at #3 singles in 2024, and placed 1st at the Southwest Conference (SWC) Tournament in 2023. If you are a Southbury player hoping to make a school team, or you want an edge in conference matches, private lessons let you work on exactly what is holding your game back.",
+    "It is not only for competitive juniors. Beginner tennis lessons, a refresher for adults, or a parent and child who want to start playing together all fit the same simple format: one coach, one player, one hour.",
+    "The town's Parks & Recreation department lists public tennis courts at Ballantine Park on Old Field Road and at Community Park on Community House Road, and Southbury courts can be reserved through the town. Your lesson happens at a local public court that is arranged when you book, and Lucas will confirm the details with you."
+   ],
+   "courts": [
+    "Ballantine Park (Old Field Road)",
+    "Community Park (Community House Road)"
+   ],
+   "_court_sources": "https://www.southbury-ct.org/athleticfacilities (Ballantine Park: 3 tennis courts); https://southburyct.myrec.com/info/facilities/ (Ballantine Park and Community Park tennis courts, reservable)",
+   "map": [
+    195,
+    180
+   ]
+  },
+  {
+   "name": "Waterbury",
+   "slug": "waterbury-ct",
+   "lon": -73.0515,
+   "lat": 41.5582,
+   "label": "middle-above",
+   "lede": "Private tennis lessons across Greater Waterbury, CT: a PTR Certified coach, {price} for a full hour, scheduled around you.",
+   "body": [
+    "Waterbury is a great city to learn tennis in. According to the City of Waterbury's Bureau of Recreation, its parks and recreation centers include more than 40 tennis courts, with public courts at parks such as Chase Park and Bucks Hill Park. With that many courts around, it is easy to keep practicing between lessons.",
+    "More Match Points brings 1-on-1 coaching to Greater Waterbury players of every level. Lucas is a PTR Certified tennis instructor with a Top 30 USTA ranking in Connecticut and multiple USTA tournament wins, so lessons can go from the basics of grip and footwork all the way to point construction and match play.",
+    "Lessons take place at a local public court that is agreed when you book; no specific facility is promised in advance. Tennis lessons for kids and adults are both welcome. Tell us the player's age, skill level and preferred times on the request form, and Lucas will confirm a court and a time.",
+    "Each private lesson is {price} for one hour, with flexible scheduling and no packages to buy."
+   ],
+   "courts": [
+    "Chase Park",
+    "Bucks Hill Park"
+   ],
+   "_court_sources": "https://www.waterburyct.org/services/public-works/recreation (over 40 tennis courts); https://waterburyct.myrec.com/info/facilities/default.aspx (Chase Park tennis courts 1-4, Bucks Hill Park tennis courts 1-3); https://waterburyct.myrec.com/info/facilities/details.aspx?FacilityID=14717 (Chase Park)",
+   "map": [
+    380,
+    108
+   ]
+  },
+  {
+   "name": "Woodbury",
+   "slug": "woodbury-ct",
+   "lon": -73.209,
+   "lat": 41.5445,
+   "label": "end",
+   "lede": "Tennis lessons in Woodbury, CT: 1-on-1 coaching for new players, returning players and juniors, {price} per hour.",
+   "body": [
+    "Woodbury players looking for private tennis lessons can book a 1-on-1 session with Lucas Oskwarek, a PTR Certified tennis instructor and former #1 singles player for Pomperaug High School Varsity.",
+    "Maybe you already play a little and want to fix one thing: a forehand that floats long, a serve that only works on good days, or footwork that leaves you late to the ball. A private lesson is the fastest way to get specific help, because the whole hour is spent on your strokes and your questions. Complete beginners are welcome too, and the first lesson starts wherever you are.",
+    "Woodbury Parks & Recreation lists tennis courts at Woodbury Middle School on Washington Avenue among its town facilities. Lessons themselves happen at a local public court that is arranged when you book, so let us know on the request form which part of town works best for you.",
+    "Every lesson is {price} for one hour, with flexible scheduling for school, work and weekend plans. Juniors, adults and families are all welcome."
+   ],
+   "courts": [
+    "Woodbury Middle School tennis courts (Washington Avenue)"
+   ],
+   "_court_sources": "https://woodburyct.myrec.com/info/facilities/ (Woodbury Parks & Recreation facility list: Woodbury Middle School - Tennis Courts, 67 Washington Ave)",
+   "map": [
+    200,
+    92
+   ]
+  },
+  {
+   "name": "Oxford",
+   "slug": "oxford-ct",
+   "lon": -73.1165,
+   "lat": 41.434,
+   "label": "start",
+   "lede": "Private tennis lessons in Oxford, CT for kids, teens and adults, with a PTR Certified coach and a simple {price} hourly rate.",
+   "body": [
+    "Oxford families have good reasons to get out on the court. Oxford Parks & Recreation lists Ryan's Courts, the town tennis courts across from Quaker Farms School on Great Oak Road, and Posypanko Park on Hawkins Road, which has tennis courts along with pickleball courts and ball fields.",
+    "If you have a child who has started swinging a racquet, tennis lessons for kids are a great way to build coordination and confidence. Lucas spent three summers as an assistant coach at the Highfield Country Club kids summer camps, coaching ages 6 to 12 in tennis fundamentals. Teens and adults get the same full hour of individual attention, whether the goal is a first rally or a stronger second serve.",
+    "Lessons are held at a local public court arranged when you book; we never promise a particular facility ahead of time. Use the request form to share the player's age, skill level and the days that work, and Lucas will reply to set things up.",
+    "Every private lesson is {price} for one hour, with flexible scheduling and all skill levels welcome."
+   ],
+   "courts": [
+    "Ryan's Courts (Great Oak Road)",
+    "Posypanko Park (Hawkins Road)"
+   ],
+   "_court_sources": "https://oxfordct.myrec.com/info/facilities/details.aspx?FacilityID=14495 (Ryans Courts: town tennis courts across from Quaker Farms School, Great Oak Road); https://oxfordct.myrec.com/info/facilities/details.aspx?FacilityID=9674 (Posypanko Park: ball fields, tennis courts, pickleball courts, batting cage)",
+   "map": [
+    285,
+    272
+   ]
+  },
+  {
+   "name": "Naugatuck",
+   "slug": "naugatuck-ct",
+   "lon": -73.0507,
+   "lat": 41.4859,
+   "label": "middle-below",
+   "lede": "1-on-1 tennis lessons in Naugatuck, CT: a fresh set of eyes on your technique from a PTR Certified instructor.",
+   "body": [
+    "Sometimes all your game needs is a fresh perspective. Private tennis lessons in Naugatuck give you a full hour with Lucas Oskwarek, a PTR Certified tennis instructor, Top 30 USTA-ranked player in Connecticut and SWC Tournament champion, looking only at your strokes, your movement and your match habits.",
+    "The Borough of Naugatuck's list of park and recreation areas includes Linden Park on North Main Street, with four tennis courts alongside a playground, basketball court and soccer field. Public courts like these make it easy to practice what you work on in a lesson.",
+    "Lessons take place at a local public court that is agreed when you book, not at a facility promised in advance. Beginner tennis lessons are a great place to start if you have never played, and experienced players can focus on specific shots, strategy or getting ready for league and tournament play.",
+    "Each lesson is {price} for one hour. Send a request with your skill level and preferred times, and Lucas will get back to you to confirm."
+   ],
+   "courts": [
+    "Linden Park (North Main Street)"
+   ],
+   "_court_sources": "https://www.naugatuck-ct.gov/filestorage/119/364/409/NAUGATUCK_PARK_AND_RECREATION_AREAS_2020.pdf (Linden Park, 155 N Main St: tennis courts (4))",
+   "map": [
+    335,
+    205
+   ]
+  },
+  {
+   "name": "Watertown",
+   "slug": "watertown-ct",
+   "lon": -73.1182,
+   "lat": 41.6062,
+   "label": "start",
+   "lede": "Private tennis lessons in Watertown, CT, scheduled around school, work and weekends: {price} for a 1-on-1 hour.",
+   "body": [
+    "Busy schedule? Private tennis lessons in Watertown are built around it. Instead of signing up for a fixed weekly clinic, you tell us which days and times are realistic, and lessons are scheduled with that in mind.",
+    "Your coach is Lucas Oskwarek, a PTR Certified tennis instructor, former #1 singles player at Pomperaug High School and experienced assistant coach. Lessons work for complete beginners learning to keep a rally going, for high school players chasing a varsity spot, and for adults who want to play better doubles with friends.",
+    "Watertown's recreation department lists the Crestbrook Park tennis courts on Northfield Road among its reservable town facilities. Lessons themselves happen at a local public court that is arranged when you book, so we will confirm the location with you rather than promise one up front.",
+    "Every lesson is 1-on-1 for a full hour at {price}. Kids and adults of all skill levels are welcome; just include the player's age and level on the request form."
+   ],
+   "courts": [
+    "Crestbrook Park tennis courts (Northfield Road)"
+   ],
+   "_court_sources": "https://watertownct.myrec.com/info/facilities/default.aspx (Crestbrook Park Tennis Courts, 834 Northfield Rd., reservable)",
+   "map": [
+    300,
+    48
+   ]
+  },
+  {
+   "name": "Cheshire",
+   "slug": "cheshire-ct",
+   "lon": -72.9007,
+   "lat": 41.499,
+   "label": "middle-below",
+   "lede": "Tennis lessons for Cheshire, CT players: 1-on-1 coaching from a PTR Certified instructor, {price} per hour.",
+   "body": [
+    "Cheshire sits on the eastern edge of the More Match Points lesson area, and players from town are welcome to request private tennis lessons. When you send a request, include Cheshire as your town and your preferred times, and Lucas will let you know what he can offer before anything is booked.",
+    "The Town of Cheshire's recreation department lists tennis courts at Cheshire Park on Highland Avenue, next to its pickleball courts and pavilion. Lessons are held at a local public court that is arranged when you book; no particular facility is promised in advance.",
+    "What you get is simple: one hour, one coach, one player. Lucas is a PTR Certified tennis instructor with a Top 30 USTA ranking in Connecticut, and he has coached children ages 6 to 12 at kids summer camps, so tennis lessons for kids are as welcome as sessions for high school players and adults. Beginners can start with grips, footwork and rallying, while experienced players can dig into serves, returns and match strategy.",
+    "Each private lesson costs {price} for one hour, with flexible scheduling and all skill levels welcome."
+   ],
+   "courts": [
+    "Cheshire Park (Highland Avenue)"
+   ],
+   "_court_sources": "https://cheshirect.myrec.com/info/facilities/details.aspx?FacilityID=14712 (Cheshire Park, 1000 Highland Ave.: Tennis Courts 1-3, pickleball courts, pavilion)",
+   "map": [
+    425,
+    240
+   ]
+  },
+  {
+   "name": "Prospect",
+   "slug": "prospect-ct",
+   "lon": -72.9787,
+   "lat": 41.5023,
+   "label": "middle-above",
+   "lede": "Private tennis lessons in Prospect, CT: beginner to advanced, kids to adults, 1-on-1 for {price} an hour.",
+   "body": [
+    "Tennis is a sport you can keep playing for life, and a private lesson is one of the quickest ways to build the basics or sharpen a game you already have. Private tennis lessons give Prospect players a full hour of 1-on-1 coaching with Lucas Oskwarek, a PTR Certified tennis instructor and SWC Tournament champion with Pomperaug High School.",
+    "Prospect Parks and Recreation lists tennis courts at Canfield Park on Coer Road. Lessons happen at a local public court that is arranged when you book, so share your preferred days and times on the request form and Lucas will confirm the location and time with you.",
+    "Every lesson starts from where the player is. For a beginner that might mean holding the racquet, tracking the ball and getting a first rally going. For a more experienced player it could be a reliable second serve, better court positioning or practicing patterns for match play. Parents booking tennis lessons for kids can mention the player's age in the request message.",
+    "Lessons are {price} for one hour, with flexible scheduling and all skill levels welcome."
+   ],
+   "courts": [
+    "Canfield Park (Coer Road)"
+   ],
+   "_court_sources": "https://prospectct.myrec.com/info/facilities/details.aspx?FacilityID=14697 (Canfield Park, 36 Coer Rd.: Multi-purpose Field, Tennis Courts)",
+   "map": [
+    400,
+    165
+   ]
+  },
+  {
+   "name": "Newtown",
+   "slug": "newtown-ct",
+   "lon": -73.3105,
+   "lat": 41.4137,
+   "label": "end",
+   "lede": "Private tennis lessons for Newtown and Sandy Hook, CT: 1-on-1 coaching from a PTR Certified instructor, {price} for a full hour.",
+   "body": [
+    "Newtown High School plays in the Southwest Conference, the same league where Lucas Oskwarek has competed for Pomperaug High School since 2023, finishing first at the SWC Tournament in 2023 and playing #1 singles in 2025. If you are a Newtown player getting ready for a high school season, lessons can focus on the parts of your game that hold up under match pressure: a reliable first serve, depth on your groundstrokes and smarter point construction.",
+    "Lessons are just as useful away from competition. Adults picking the game back up, beginners learning to rally and kids getting their first real feel for the ball all get the same full hour, 1-on-1, built around their level and goals.",
+    "Newtown's town park courts are reserved for Parks & Recreation lessons, so private lessons are not held there. When you request a lesson, choose Newtown as your town and Lucas will arrange a court with you as part of booking."
+   ],
+   "courts": null,
+   "where_note": "Newtown's town park courts are for Parks & Recreation lessons only, so private lessons aren't held there. Your lesson court is arranged with you when you book.",
+   "_court_sources": "https://www.newtown-ct.gov/parks-recreation/pages/parks-information-bicycle-playground-and-tennispickleball-court-etiquette (Dickinson Park 5 courts, Treadwell Park 4 courts; 'NO private tennis lessons allowed. Lessons by Parks and Recreation personnel only.'); https://www.newtown-ct.gov/parks-recreation/pages/treadwell-park; https://www.newtown-ct.gov/parks-recreation/pages/dickinson-park (residents only). Courts deliberately NOT named on the page because private lessons are not allowed there.",
+   "_fact_sources": "https://www.swcsportscenter.com/schools (Southwest Conference member schools, incl. Pomperaug 234 Judd Rd Southbury); Newtown High School, 12 Berkshire Road, Sandy Hook is listed as an SWC member.",
+   "map": [
+    130,
+    240
+   ]
+  },
+  {
+   "name": "Monroe",
+   "slug": "monroe-ct",
+   "lon": -73.2073,
+   "lat": 41.3326,
+   "label": "start",
+   "lede": "1-on-1 tennis lessons for Monroe, CT players, from first-timers to high school players, with a PTR Certified coach at {price} per hour.",
+   "body": [
+    "Monroe's Masuk High School competes in the Southwest Conference, and Lucas knows that league from the inside: he has played varsity tennis for Pomperaug High School since 2023, went undefeated at #3 singles in 2024 and moved up to #1 singles in 2025. That experience shapes how he coaches high school players, with practical work on consistency, shot selection and staying composed in tight sets.",
+    "Private lessons are not only for team players. Each lesson is a full hour with one coach and one player, so a beginner can learn grip, footwork and clean contact without feeling rushed, and a returning adult can rebuild strokes at their own pace. Tennis lessons for kids work the same way, adjusted to the player's age.",
+    "The town courts at Wolfe Park only allow lessons organized through Monroe Parks & Recreation, so private lessons for Monroe players are not held there. Send a request with your times and skill level, and the lesson court is arranged with you when you book."
+   ],
+   "courts": null,
+   "where_note": "Monroe's Wolfe Park courts only allow lessons run through Monroe Parks & Recreation, so private lessons aren't held there. Your lesson court is arranged with you when you book.",
+   "_court_sources": "https://monroect.myrec.com/info/facilities/details.aspx?FacilityID=13852 (Wolfe Park Tennis & Pickleball Courts, 285 Cutlers Farm Road, Tennis 1-7; 'There is to be no private or group lessons, tournaments, matches etc, unless they are organized through the Monroe Parks and Recreation Department.')",
+   "_fact_sources": "https://www.swcsportscenter.com/schools (Southwest Conference member schools, incl. Pomperaug 234 Judd Rd Southbury); Masuk High School, 1014 Monroe Turnpike, Monroe is listed as an SWC member.",
+   "map": [
+    215,
+    300
+   ]
+  },
+  {
+   "name": "Redding",
+   "slug": "redding-ct",
+   "lon": -73.3835,
+   "lat": 41.3026,
+   "label": "start",
+   "lede": "Private tennis lessons for Redding, CT: a PTR Certified coach, a full hour 1-on-1, and one simple rate of {price}.",
+   "body": [
+    "Joel Barlow High School, in Redding, plays in the Southwest Conference, where Lucas Oskwarek has competed for Pomperaug High School since 2023. Alongside high school tennis he has won multiple USTA tournaments and reached a top 30 USTA ranking in Connecticut, so he can help Redding juniors who want to start entering tournaments or move up in them.",
+    "Most players simply want to enjoy the game more. Beginner tennis lessons cover the fundamentals step by step, from how to hold the racquet to keeping a rally going. More experienced players can bring a specific goal, such as a second serve they trust, a backhand that holds up against pace or better net play, and spend the hour on it.",
+    "Redding's town courts at the community center are reserved for Park and Recreation programs, and private lessons are not offered there. Your lesson court is arranged with you when you book, so pick Redding as your town on the request form and add the times that work for you."
+   ],
+   "courts": null,
+   "where_note": "Redding's community center courts don't allow private lessons (racquet lessons there run only through Redding Park and Recreation). Your lesson court is arranged with you when you book.",
+   "_court_sources": "https://reddingct.gov/parks-and-recreation/programs/tennis/ (4 outdoor tennis courts at the Redding Community Center); https://reddingct.gov/wp-content/uploads/2025/04/Tennis-Courts-at-RCC-4.2025.pdf ('Lessons and clinics for racquet sports can only be offered through Redding Park and Recreation Department programs. No Private Lessons.'). Courts deliberately NOT named as a lesson location.",
+   "_fact_sources": "https://www.swcsportscenter.com/schools (Southwest Conference member schools, incl. Pomperaug 234 Judd Rd Southbury); Joel Barlow, 100 Black Rock Tpke, Redding is listed as an SWC member.",
+   "map": [
+    95,
+    318
+   ]
+  },
+  {
+   "name": "Danbury",
+   "slug": "danbury-ct",
+   "lon": -73.454,
+   "lat": 41.3948,
+   "label": "middle-above",
+   "lede": "1-on-1 tennis lessons in Danbury, CT for kids, teens and adults, with PTR Certified coach Lucas Oskwarek at {price} per hour.",
+   "body": [
+    "Danbury has public tennis courts in two of its city parks: Rogers Park on Memorial Drive, a 56-acre park with tennis and pickleball courts, and Richter Park on Aunt Hack Road. Your lesson court is arranged with you when you book, and Lucas will confirm the details before your first lesson.",
+    "Lucas is a PTR Certified tennis instructor who has played varsity tennis for Pomperaug High School since 2023, including #1 singles in 2025, and he coached children ages 6 to 12 at the Highfield Country Club summer camps in Middlebury from 2022 to 2024. That mix means lessons work for a young beginner learning to rally as well as a teenager preparing for a school season, including players at Immaculate High School, which also competes in the Southwest Conference.",
+    "Adults are welcome too, whether you are new to tennis or getting back on court after years away. Every lesson is private, a full hour, with flexible scheduling. Request a lesson with your skill level and preferred times, and Lucas will get back to you to set it up."
+   ],
+   "courts": [
+    "Rogers Park (Memorial Drive)",
+    "Richter Park (Aunt Hack Road)"
+   ],
+   "_court_sources": "https://www.danbury-ct.gov/270/City-Parks (Richter Park, 100 Aunt Hack Road: tennis courts; Rogers Park, Memorial Drive, 56 acres: pickleball and tennis courts); https://www.danbury-ct.gov/Facilities/Facility/Details/Rogers-Park-17 (21 Memorial Drive). No private-lesson restriction found on these pages.",
+   "_fact_sources": "https://www.swcsportscenter.com/schools (Southwest Conference member schools, incl. Pomperaug 234 Judd Rd Southbury); Immaculate High School, 73 Southern Blvd, Danbury is listed as an SWC member.",
+   "map": [
+    60,
+    150
+   ]
+  }
+ ]
 }

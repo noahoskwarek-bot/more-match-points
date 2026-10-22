@@ -6,15 +6,15 @@
   "base_url": "https://morematchpoints.com",
   "_base_help": "Full site address with no trailing slash (custom domain morematchpoints.com, set in the repo's Pages settings; build.py writes the CNAME file from this).",
   "title": "More Match Points | Private Tennis Lessons in Middlebury & Southbury, CT",
-  "description": "More Match Points: 1-on-1 private tennis lessons with PTR Certified instructor Lucas Oskwarek. $35 per 1-hour lesson, flexible scheduling, all skill levels. Serving Middlebury, Southbury and Greater Waterbury, CT.",
+  "description": "More Match Points: 1-on-1 private tennis lessons with PTR Certified instructor Lucas Oskwarek. {price} per 1-hour lesson, flexible scheduling, all skill levels. Serving Greater Waterbury through Newtown, Monroe, Redding and Danbury, CT.",
   "header_top": "PTR Certified",
   "header_bottom": "Tennis Instruction",
   "tagline": "Take your game to the next level.",
   "kicker": "1-on-1 private lessons",
   "intro": "Looking to take your game to the next level? Get a fresh perspective on your technique.",
-  "price": 35,
-  "meta_description": "1-on-1 private tennis lessons with PTR Certified coach Lucas Oskwarek. $35 per hour, all levels, kids and adults. Middlebury, Southbury & Greater Waterbury, CT.",
-  "_price_help": "Lesson price in whole US dollars. Changes the price card, the share description and the search listing (priceRange). Also update the $35 in \"description\" and \"meta_description\" above.",
+  "price": 45,
+  "meta_description": "1-on-1 private tennis lessons with PTR Certified coach Lucas Oskwarek. {price} per hour, all levels, kids and adults. Greater Waterbury to Danbury, CT.",
+  "_price_help": "THE lesson price, in whole US dollars: the only place it is set. Any text in site.json or towns.json can say {price} and the build fills in e.g. $45 (hero, price cards, schema Offer, meta descriptions, FAQ, town pages). After changing it run python3 tools/make_brand.py (share images) and rebuild.",
   "lesson_length": "1-hour lesson",
   "offer_notes": [
     "Flexible scheduling",
@@ -67,7 +67,11 @@
   "areas": [
     "Middlebury",
     "Southbury",
-    "Greater Waterbury"
+    "Greater Waterbury",
+    "Newtown",
+    "Monroe",
+    "Redding",
+    "Danbury"
   ],
   "state": "CT",
   "area_cities": [
@@ -79,9 +83,13 @@
     "Naugatuck",
     "Watertown",
     "Cheshire",
-    "Prospect"
+    "Prospect",
+    "Newtown",
+    "Monroe",
+    "Redding",
+    "Danbury"
   ],
-  "_area_help": "areas = the short list shown in the hero, footer and title. area_cities = every town in the search listing (areaServed); town pages come from towns.json.",
+  "_area_help": "area_line = the service-area line in the hero and footer; og_area = the shorter line on the share images. areas = short list (kept for reference). area_cities = every town in the search listing (areaServed); town pages, the Locations menu and the map come from towns.json. Use {towns} in text to list every town.",
   "form_endpoint": "https://formsubmit.co/8e6141005ff5c6d8439776617a1f4f33",
   "form_subject": "New lesson request - More Match Points",
   "form_captcha": true,
@@ -103,6 +111,10 @@
     "Watertown",
     "Cheshire",
     "Prospect",
+    "Newtown",
+    "Monroe",
+    "Redding",
+    "Danbury",
     "Other"
   ],
   "book_title": "Book your lesson",
@@ -169,11 +181,11 @@
   "xp_intro": "From beginner tennis lessons to high school and USTA match prep, this is the experience behind every lesson.",
   "price_intro": "No packages to figure out. Every lesson is a full hour, 1-on-1 with Lucas, for kids, teens and adults.",
   "area_title": "Where I teach",
-  "area_intro": "Private tennis lessons in Middlebury, Southbury, Greater Waterbury and nearby towns. Lessons are at a local public court arranged when you book. Pick your town for local details.",
+  "area_intro": "Private tennis lessons from Middlebury, Southbury and Greater Waterbury through Newtown, Monroe, Redding and Danbury. Lessons are at a court arranged with you when you book. Pick your town for local details.",
   "faq": [
     {
       "q": "How long is a lesson, and how much does it cost?",
-      "a": "Every lesson is a 1-on-1 private lesson that lasts one hour and costs $35. There is one simple rate, with flexible scheduling."
+      "a": "Every lesson is a 1-on-1 private lesson that lasts one hour and costs {price}. There is one simple rate, with flexible scheduling."
     },
     {
       "q": "What should I bring?",
@@ -189,7 +201,7 @@
     },
     {
       "q": "Where do lessons take place?",
-      "a": "Lessons are held at a local public tennis court in the service area, which covers Middlebury, Southbury, Greater Waterbury and nearby towns. The exact court is confirmed with you when your lesson is booked."
+      "a": "Lessons are held at a local tennis court in the service area, which runs from Middlebury, Southbury and Greater Waterbury through Newtown, Monroe, Redding and Danbury. Some towns only allow lessons run by their own parks department on town courts, so the exact court is confirmed with you when your lesson is booked."
     },
     {
       "q": "What happens if it rains?",
@@ -201,11 +213,14 @@
     },
     {
       "q": "Which towns do you serve?",
-      "a": "Middlebury, Southbury, Waterbury, Woodbury, Oxford, Naugatuck, Watertown, Cheshire and Prospect, CT. If you are in a nearby town, choose Other on the request form and mention where you are."
+      "a": "{towns}, CT. If you are in a nearby town, choose Other on the request form and mention where you are."
     }
   ],
   "_faq_help": "FAQ page (/faq/) and the home FAQ block (first home_faq_count questions). Keep answers truthful; the rain answer needs Noah's confirmation.",
   "home_faq_count": 4,
   "reviews": [],
-  "_reviews_help": "Real reviews only, shared with permission. Each: {\"name\": \"J.D.\" or first name, \"text\": \"...\", \"date\": \"YYYY-MM-DD\"}. Empty = the section is not rendered at all. See README."
+  "_reviews_help": "Real reviews only, shared with permission. Each: {\"name\": \"J.D.\" or first name, \"text\": \"...\", \"date\": \"YYYY-MM-DD\"}. Empty = the section is not rendered at all. See README.",
+  "area_line": "Greater Waterbury through Newtown, Monroe, Redding & Danbury, CT",
+  "og_area": "Greater Waterbury to Danbury, CT",
+  "about_intro": "Lucas Oskwarek is a PTR Certified tennis instructor and a varsity player at Pomperaug High School in Southbury, CT. Here is the experience behind every lesson."
 }

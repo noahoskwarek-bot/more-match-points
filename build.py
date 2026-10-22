@@ -24,11 +24,26 @@ def read(p):
 
 S = json.loads(read('site.json'))
 TOWNS = json.loads(read('towns.json'))['towns']
+PRICE = f'${S["price"]}'
+TOWN_LIST = ', '.join(x['name'] for x in TOWNS[:-1]) + ' and ' + TOWNS[-1]['name']
+
+
+def fill(v):
+    """{price} and {towns} in any site.json / towns.json text -> the single price setting / every town."""
+    if isinstance(v, str):
+        return v.replace('{price}', PRICE).replace('{towns}', TOWN_LIST)
+    if isinstance(v, list):
+        return [fill(x) for x in v]
+    if isinstance(v, dict):
+        return {k: fill(x) for k, x in v.items()}
+    return v
+
+
+S, TOWNS = fill(S), fill(TOWNS)
 BASE_URL = S['base_url'].rstrip('/')
 HOST = urlparse(BASE_URL).hostname
 BASE = urlparse(BASE_URL).path.rstrip('/')   # "" on the custom domain, "/<repo>" on a github.io project URL
-AREAS = ' · '.join(S['areas']) + ', ' + S['state']
-PRICE = f'${S["price"]}'
+AREAS = S['area_line']
 COACH = {'@type': 'Person', 'name': S['coach'], 'jobTitle': 'PTR Certified Tennis Instructor'}
 FONT_CSS = '''@font-face{font-family:"Anton";font-style:normal;font-weight:400;font-display:swap;src:url(%(b)s/fonts/anton-latin.woff2) format("woff2")}
 @font-face{font-family:"Inter";font-style:normal;font-weight:400 800;font-display:swap;src:url(%(b)s/fonts/inter-latin-var.woff2) format("woff2")}
@@ -53,7 +68,7 @@ TICK = '<svg class="tick" viewBox="0 0 24 24" aria-hidden="true" focusable="fals
 
 
 BIZ_ID = BASE_URL + '/#business'
-PERSON_ID = BASE_URL + '/#lucas'
+PERSON_ID = BASE_URL + '/about/#lucas'
 
 
 def offer(area=None):
@@ -84,24 +99,29 @@ def base_graph():
         'priceRange': f'{PRICE} per {S["lesson_length"]}',
         'areaServed': [city(c) for c in S['area_cities']],
         'address': {'@type': 'PostalAddress', 'addressLocality': S['area_cities'][0], 'addressRegion': S['state'], 'addressCountry': 'US'},
-        'founder': {'@id': PERSON_ID},
+        'founder': {'@type': 'Person', '@id': PERSON_ID, 'name': S['coach'], 'url': BASE_URL + '/about/'},
         'employee': {'@id': PERSON_ID},
         'slogan': S['tagline'],
         'knowsAbout': ['Tennis', 'Private tennis lessons', 'Tennis lessons for kids', 'Beginner tennis lessons'],
         'makesOffer': offer(),
     }
-    person = {
+    return [biz]
+
+
+def person_node():
+    return {
         '@type': 'Person',
         '@id': PERSON_ID,
         'name': S['coach'],
+        'url': BASE_URL + '/about/',
         'jobTitle': 'PTR Certified Tennis Instructor',
         'worksFor': {'@id': BIZ_ID},
         'knowsAbout': ['Tennis', 'Tennis instruction', 'Professional Tennis Registry (PTR) certification', 'USTA tournament tennis'],
         'hasCredential': {'@type': 'EducationalOccupationalCredential', 'name': 'PTR Certified Tennis Instructor',
                           'credentialCategory': 'certification',
                           'recognizedBy': {'@type': 'Organization', 'name': 'Professional Tennis Registry (PTR)'}},
+        'memberOf': {'@type': 'SportsTeam', 'name': 'Pomperaug High School varsity tennis', 'sport': 'Tennis'},
     }
-    return [biz, person]
 
 
 def crumbs(items):
@@ -153,12 +173,35 @@ def head(title, desc, path, noindex=False, ld_extra=(), og=None):
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="top"><div class="wrap">
+<header class="top" id="top"><div class="wrap">
 <a class="brand" href="{u()}">{mark()}<span class="word">{e(S['name'])}</span></a>
-<nav class="nav" aria-label="Main"><a href="{u()}#how">How it works</a><a href="{u()}#pricing">Pricing</a><a href="{u('tennis-lessons/')}">Towns</a><a href="{u('faq/')}">FAQ</a></nav>
+{nav()}
 <a class="btn optic sm hdr-cta" href="{u()}#request">Request a lesson</a>
 </div></header>
 '''
+
+
+CHEV = '<svg class="chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+
+
+def dropdown(key, label, href, links):
+    """Disclosure menu. Without JS the label is a plain link to href; site.js swaps in the button."""
+    items = ''.join(f'<li><a href="{h}">{e(n)}</a></li>' for n, h in links)
+    return (f'<li class="dd" data-dd="{key}"><a class="dd-link" href="{href}">{e(label)}</a>'
+            f'<button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-{key}" hidden>{e(label)}{CHEV}</button>'
+            f'<ul class="dd-menu dd-{key}" id="dd-{key}">{items}</ul></li>')
+
+
+def nav():
+    locs = [(f'{x["name"]}, CT', town_url(x)) for x in TOWNS] + [('All locations', u('tennis-lessons/'))]
+    about = [('About Lucas', u('about/')), ('FAQ', u('faq/'))]
+    return (f'<button class="burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu" hidden>'
+            f'<span class="bars" aria-hidden="true"><i></i><i></i><i></i></span></button>'
+            f'<nav class="nav" id="site-nav" aria-label="Main"><ul class="nav-list">'
+            f'<li><a href="{u()}#how">How it works</a></li><li><a href="{u()}#pricing">Pricing</a></li>'
+            f'{dropdown("loc", "Locations", u("tennis-lessons/"), locs)}{dropdown("about", "About", u("about/"), about)}'
+            f'<li class="nav-cta"><a class="btn optic block" href="{u()}#request">Request a lesson {ARROW}</a></li>'
+            f'</ul></nav>')
 
 
 def foot(sticky=True):
@@ -167,8 +210,8 @@ def foot(sticky=True):
     return f'''<footer class="foot"><div class="wrap">
 <div class="foot-brand">{mark()}<div><p class="word">{e(S['name'])}</p><p>{e(S['footer_line'])}</p></div></div>
 <p class="foot-area">Private tennis lessons in {e(AREAS)}</p>
-<nav class="foot-towns" aria-label="Tennis lessons by town"><p class="foot-h"><a href="{u('tennis-lessons/')}">Tennis lessons by town</a></p><ul>{''.join(f'<li><a href="{u("tennis-lessons/" + x["slug"] + "/")}">{e(x["name"])}</a></li>' for x in TOWNS)}</ul></nav>
-<p class="foot-links"><a href="{u('faq/')}">FAQ</a></p>
+<nav class="foot-towns" aria-label="Tennis lessons by town"><p class="foot-h"><a href="{u('tennis-lessons/')}">Locations</a></p><ul>{''.join(f'<li><a href="{u("tennis-lessons/" + x["slug"] + "/")}">{e(x["name"])}</a></li>' for x in TOWNS)}</ul></nav>
+<p class="foot-links"><a href="{u('about/')}">About Lucas</a><a href="{u('faq/')}">FAQ</a><a href="{u('tennis-lessons/')}">All locations</a></p>
 <p><a class="foot-cta" href="{u()}#request">Request a lesson {ARROW}</a></p>
 <p class="fine">© {year} {e(S['name'])}</p>
 </div></footer>
@@ -216,14 +259,7 @@ def index():
     lines = S['hero_lines']
     hi = len(lines) - int(S.get('hero_highlight', 1))
     h1 = ''.join(f'<span class="ln{" hi" if i >= hi else ""}">{e(x)}</span>' for i, x in enumerate(lines))
-    stats = ''.join(f'<li class="stat reveal"><span class="big">{e(s["big"])}</span><span class="lbl">{e(s["label"])}</span>'
-                    f'<span class="sub">{e(s["sub"])}</span></li>' for s in S['stats'])
-    cards = ''
-    for c in S['experience']:
-        meta = ' · '.join(x for x in (c['where'], c.get('when')) if x)
-        pts = ''.join(f'<li>{e(p)}</li>' for p in c['points'])
-        cards += (f'<article class="xp reveal"><p class="tag">{e(c["tag"])}</p><h3>{e(c["title"])}</h3>'
-                  f'<p class="meta">{e(meta)}</p><ul>{pts}</ul></article>')
+    stats = stat_items()
     steps = ''.join(f'<li class="step reveal"><span class="num">0{i + 1}</span><h3>{e(s["title"])}</h3><p>{e(s["text"])}</p></li>'
                     for i, s in enumerate(S['steps']))
     ppts = ''.join(f'<li>{TICK}{e(p)}</li>' for p in S['price_points'])
@@ -242,10 +278,7 @@ def index():
 <section class="stats" id="credentials" aria-labelledby="cred-title"><div class="wrap">
 <h2 id="cred-title" class="sr">Why train with Lucas</h2>
 <ul class="stat-row">{stats}</ul>
-</div></section>
-<section class="light xp-sec" aria-labelledby="xp-title"><div class="wrap">
-<div class="sec-head reveal"><p class="kicker">{e(S['why_title'])}</p><h2 id="xp-title">Experience on court</h2><p class="body">{e(S['xp_intro'])}</p></div>
-<div class="xp-grid">{cards}</div>
+<p class="stat-more"><a class="text-link" href="{u('about/')}">About Lucas and his experience {ARROW}</a></p>
 </div></section>
 <section class="how" id="how" aria-labelledby="how-title"><div class="wrap">
 <div class="sec-head reveal"><p class="kicker">How it works</p><h2 id="how-title">Request. Confirm. Play.</h2></div>
@@ -265,7 +298,7 @@ def index():
 <section class="area" id="area" aria-labelledby="area-title"><div class="wrap area-grid">
 <div class="sec-head reveal"><p class="kicker">Lesson area</p><h2 id="area-title">{e(S['area_title'])}</h2>
 <p class="body">{e(S['area_intro'])}</p>{towns}
-<p class="more"><a class="text-link" href="{u('tennis-lessons/')}">All towns {ARROW}</a></p></div>
+<p class="more"><a class="text-link" href="{u('tennis-lessons/')}">All locations {ARROW}</a></p></div>
 <div class="area-box reveal">{art.area_svg(TOWNS)}</div>
 </div></section>
 {reviews_section()}{faq_block()}<section class="book" id="request" aria-labelledby="book-title" tabindex="-1"><div class="wrap book-grid">
@@ -365,7 +398,7 @@ def town_page(x):
                   f'<p>Listed by the town\u2019s parks and recreation department. Your lesson court is arranged when you book.</p></div>')
     else:
         courts = ('<div class="note"><h3>Where lessons happen</h3>'
-                  '<p>At a local public court in the area, arranged with you when you book.</p></div>')
+                  f'<p>{e(x.get("where_note") or "At a local public court in the area, arranged with you when you book.")}</p></div>')
     service = {'@type': 'Service', '@id': BASE_URL + '/' + path + '#service',
                'name': f'Private tennis lessons in {name}, CT', 'serviceType': 'Private tennis lessons',
                'provider': {'@id': BIZ_ID}, 'areaServed': city(name), 'offers': offer(city(name)),
@@ -380,7 +413,7 @@ def town_page(x):
 <section class="area near"><div class="wrap">
 <div class="sec-head"><p class="kicker">Nearby</p><h2>Other towns I teach in</h2></div>
 {town_chips(exclude=name)}
-<p class="more"><a class="text-link" href="{u('tennis-lessons/')}">All towns {ARROW}</a> <a class="text-link" href="{u('faq/')}">Lesson FAQ {ARROW}</a></p>
+<p class="more"><a class="text-link" href="{u('tennis-lessons/')}">All locations {ARROW}</a> <a class="text-link" href="{u('about/')}">About Lucas {ARROW}</a> <a class="text-link" href="{u('faq/')}">Lesson FAQ {ARROW}</a></p>
 </div></section>
 </main>
 '''
@@ -391,8 +424,8 @@ def town_page(x):
 def towns_index():
     path = 'tennis-lessons/'
     title = f'Tennis Lessons by Town in Connecticut | {S["name"]}'
-    desc = (f'Private tennis lessons in {", ".join(x["name"] for x in TOWNS[:-1])} and {TOWNS[-1]["name"]}, CT. '
-            f'{PRICE} per hour.')
+    desc = (f'Private tennis lessons with a PTR Certified coach in {len(TOWNS)} Connecticut towns, from Greater Waterbury '
+            f'to Newtown, Monroe, Redding and Danbury. {PRICE} per hour.')
     items = [('Home', ''), ('Tennis lessons', path)]
     cards = ''.join(f'<li class="tcard reveal"><a href="{town_url(x)}"><span class="tn">{e(x["name"])}, CT</span>'
                     f'<span class="ts">{e(x["lede"])}</span><span class="tg">Tennis lessons in {e(x["name"])} {ARROW}</span></a></li>'
@@ -400,15 +433,15 @@ def towns_index():
     lst = {'@type': 'ItemList', 'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'name': f'{x["name"]}, CT',
                                                      'url': BASE_URL + town_url(x)} for i, x in enumerate(TOWNS)]}
     h1 = '<span class="ln">Tennis lessons</span> <span class="ln hi">by town.</span>'
-    lede = ('Private 1-on-1 tennis lessons across Middlebury, Southbury, Greater Waterbury and nearby towns in Connecticut. '
-            'Lessons are at a local public court arranged when you book.')
+    lede = ('Private 1-on-1 tennis lessons from Middlebury, Southbury and Greater Waterbury through Newtown, Monroe, Redding '
+            'and Danbury, Connecticut. Your lesson court is arranged with you when you book.')
     body = f'''<main id="main">
 {page_hero('Where I teach', h1, lede, items)}
 <section class="light"><div class="wrap">
 <ul class="tgrid">{cards}</ul>
 </div></section>
 <section class="area"><div class="wrap area-grid">
-<div class="sec-head"><p class="kicker">Lesson area</p><h2>Nine towns, one simple rate.</h2>
+<div class="sec-head"><p class="kicker">Lesson area</p><h2>{NUM_WORDS.get(len(TOWNS), len(TOWNS))} towns, one simple rate.</h2>
 <p class="body">Every lesson is {e(PRICE)} per {e(S['lesson_length'])}, 1-on-1, with flexible scheduling. Don\u2019t see your town? Choose Other on the request form.</p>
 <p class="more"><a class="btn optic" href="{u()}#request">Request a lesson {ARROW}</a></p></div>
 <div class="area-box">{art.area_svg(TOWNS)}</div>
@@ -416,6 +449,53 @@ def towns_index():
 </main>
 '''
     return head(title, desc, path, ld_extra=[crumbs(items), lst]) + body + foot()
+
+
+NUM_WORDS = {9: 'Nine', 10: 'Ten', 11: 'Eleven', 12: 'Twelve', 13: 'Thirteen', 14: 'Fourteen', 15: 'Fifteen'}
+
+
+def stat_items(reveal=True):
+    return ''.join(f'<li class="stat{" reveal" if reveal else ""}"><span class="big">{e(s["big"])}</span><span class="lbl">{e(s["label"])}</span>'
+                   f'<span class="sub">{e(s["sub"])}</span></li>' for s in S['stats'])
+
+
+def xp_cards():
+    cards = ''
+    for c in S['experience']:
+        meta = ' · '.join(x for x in (c['where'], c.get('when')) if x)
+        pts = ''.join(f'<li>{e(p)}</li>' for p in c['points'])
+        cards += (f'<article class="xp reveal"><p class="tag">{e(c["tag"])}</p><h3>{e(c["title"])}</h3>'
+                  f'<p class="meta">{e(meta)}</p><ul>{pts}</ul></article>')
+    return cards
+
+
+def about_page():
+    path = 'about/'
+    title = f'About Lucas Oskwarek, PTR Certified Tennis Coach | {S["name"]}'
+    desc = ('Meet Lucas Oskwarek: PTR Certified tennis instructor, Pomperaug #1 singles, SWC champion, top 30 USTA CT '
+            'and Highfield CC kids camp coach.')
+    items = [('Home', ''), ('About Lucas', path)]
+    prof = {'@type': 'ProfilePage', '@id': BASE_URL + '/about/#page', 'url': BASE_URL + '/about/',
+            'name': title, 'mainEntity': {'@id': PERSON_ID}}
+    h1 = '<span class="ln">About</span> <span class="ln hi">Lucas.</span>'
+    body = f'''<main id="main">
+{page_hero('About Lucas', h1, S['about_intro'], items)}
+<section class="stats about-stats" aria-labelledby="cred-title"><div class="wrap">
+<h2 id="cred-title" class="sr">Credentials</h2>
+<ul class="stat-row">{stat_items()}</ul>
+</div></section>
+<section class="light xp-sec" aria-labelledby="xp-title"><div class="wrap">
+<div class="sec-head reveal"><p class="kicker">{e(S['why_title'])}</p><h2 id="xp-title">Experience on court</h2><p class="body">{e(S['xp_intro'])}</p></div>
+<div class="xp-grid">{xp_cards()}</div>
+</div></section>
+<section class="area near"><div class="wrap">
+<div class="sec-head"><p class="kicker">Lessons</p><h2>Train with Lucas</h2>
+<p class="body">{e(PRICE)} per {e(S['lesson_length'])}, 1-on-1, for kids, teens and adults. {e(AREAS)}.</p></div>
+<p class="more"><a class="btn optic" href="{u()}#request">Request a lesson {ARROW}</a> <a class="text-link" href="{u('tennis-lessons/')}">Locations {ARROW}</a> <a class="text-link" href="{u('faq/')}">FAQ {ARROW}</a></p>
+</div></section>
+</main>
+'''
+    return head(title, desc, path, ld_extra=[crumbs(items), person_node(), prof]) + body + foot()
 
 
 def faq_page():
@@ -445,7 +525,7 @@ def faq_page():
 
 
 def sitemap_paths():
-    return [''] + ['tennis-lessons/'] + [f'tennis-lessons/{x["slug"]}/' for x in TOWNS] + ['faq/']
+    return [''] + ['tennis-lessons/'] + [f'tennis-lessons/{x["slug"]}/' for x in TOWNS] + ['about/', 'faq/']
 
 
 def sitemap():
@@ -478,6 +558,7 @@ def outputs():
         'sitemap.xml': sitemap(),
         'tennis-lessons/index.html': towns_index(),
         'faq/index.html': faq_page(),
+        'about/index.html': about_page(),
         'site.webmanifest': json.dumps({'name': S['name'], 'short_name': S['short_name'], 'start_url': u(), 'scope': u(),
                                         'display': 'browser', 'background_color': art.NAVY, 'theme_color': art.NAVY,
                                         'icons': [{'src': u('icon-192.png'), 'sizes': '192x192', 'type': 'image/png'},

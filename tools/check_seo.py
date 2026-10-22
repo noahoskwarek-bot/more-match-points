@@ -43,15 +43,20 @@ for path in sorted(glob.glob(os.path.join(ROOT, '**', 'index.html'), recursive=T
                 if bad in n: errors.append(f'{rel}: schema has {bad}')
             if ty in ('Review', 'AggregateRating'): errors.append(f'{rel}: schema {ty}')
         walk(data, chk)
-    need = {'LocalBusiness', 'Person', 'Offer', 'UnitPriceSpecification', 'EducationalOccupationalCredential'}
+    need = {'LocalBusiness', 'Person', 'Offer', 'UnitPriceSpecification'}
     if rel != '': need |= {'BreadcrumbList'}
+    if rel == 'about/': need |= {'ProfilePage', 'EducationalOccupationalCredential'}
+    prices = set(re.findall(r'"price": "([^"]+)"', h))
+    if prices != {str(S['price'])}: errors.append(f'{rel}: schema prices {prices} != {S["price"]}')
+    if not re.search(r'<a class="dd-link" href="/tennis-lessons/"', h) or not re.search(r'<a class="dd-link" href="/about/"', h):
+        errors.append(f'{rel}: no-JS nav links to /tennis-lessons/ and /about/ missing')
     if rel == 'faq/': need |= {'FAQPage', 'Question', 'Answer'}
     if rel.startswith('tennis-lessons/') and rel != 'tennis-lessons/': need |= {'Service'}
     miss = need - set(types)
     if miss: errors.append(f'{rel}: missing schema {sorted(miss)}')
     if rel == '':
         cities = sorted(re.findall(r'"name": "([A-Za-z]+), CT"', h))
-        if len(set(cities)) < 9: errors.append(f'home: areaServed has {len(set(cities))} towns')
+        if set(cities) != {x['name'] for x in TOWNS}: errors.append(f'home: areaServed has {len(set(cities))} towns, expected {len(TOWNS)}')
     print(f'{rel or "/":32} {len(t):3}c title  {len(d):3}c desc  schema: {",".join(sorted(set(types)))}')
 for k, v in list(titles.items()) + list(descs.items()):
     if len(v) > 1: errors.append(f'duplicate title/description on {v}: {k[:60]}')

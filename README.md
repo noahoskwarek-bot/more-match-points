@@ -89,6 +89,10 @@ Only add a real review from a real student or parent, with their permission to p
 Use first name + last initial or initials (whatever they agreed to), their actual words, and the date they gave it. Never write or edit a review yourself. Then rebuild.
 A "Students say" section appears above the FAQ. No star ratings or review schema are added, because Google ignores self-published reviews for local businesses.
 
+## Winter lessons (unpublished)
+
+`winter_section()` in `build.py` writes an empty placeholder inside a `<template>` with `hidden`, so nothing renders or gets indexed. It isn't in the nav or sitemap. Once the details are decided, fill in the copy and move the section out of the template.
+
 ## Design
 
 - Colours: midnight navy `#0a1128`, raised navy `#111b3a`, court blue `#1d43a6`, optic yellow `#d7f205`, paper `#f4f5ef`, clay `#a3461f` (small labels on paper), white.

@@ -311,7 +311,7 @@ def index():
 <p class="more"><a class="text-link" href="{u('tennis-lessons/')}">All locations {ARROW}</a></p></div>
 <div class="area-box reveal">{art.area_svg(TOWNS)}</div>
 </div></section>
-{reviews_section()}{faq_block()}<section class="book" id="request" aria-labelledby="book-title" tabindex="-1"><div class="wrap book-grid">
+{reviews_section()}{winter_section()}{faq_block()}<section class="book" id="request" aria-labelledby="book-title" tabindex="-1"><div class="wrap book-grid">
 <div class="sec-head"><p class="kicker">Book</p><h2 id="book-title">{e(S['book_title'])}</h2>
 <p class="body">{e(S['book_text'])}</p>
 <p class="book-price"><strong>{e(PRICE)}</strong> per {e(S['lesson_length'])} · {e(' · '.join(S['offer_notes']))}</p></div>
@@ -351,14 +351,26 @@ def faq_block():
 def reviews_section():
     revs = [r for r in S.get('reviews', []) if r.get('text') and r.get('name')]
     if not revs:
-        return ''
+        # Nothing is rendered (no box, no heading) until a real review exists.
+        return ('<!-- Testimonials: hidden until there is a real quote. To add one, put it in "reviews" in site.json '
+                '({"name": "J.M.", "text": "Their words, unedited.", "date": "YYYY-MM-DD"}, shared with permission), '
+                'then run python3 build.py. The section then appears here automatically. -->\n')
     cards = ''.join(f'<figure class="rev reveal"><blockquote><p>{e(r["text"])}</p></blockquote>'
                     f'<figcaption>{e(r["name"])}{(" · " + e(r["date"])) if r.get("date") else ""}</figcaption></figure>' for r in revs)
-    return f'''<section class="reviews" aria-labelledby="rev-title"><div class="wrap">
+    return f'''<section class="reviews" id="reviews" aria-labelledby="rev-title"><div class="wrap">
 <div class="sec-head reveal"><p class="kicker">Reviews</p><h2 id="rev-title">From the court.</h2></div>
 <div class="rev-grid">{cards}</div>
 </div></section>
 '''
+
+
+def winter_section():
+    """Winter lessons: placeholder structure only, unpublished. Inside a <template> (never rendered or indexed)
+    and hidden. Not linked from the nav or sitemap. Fill in and move out of the template once details are decided."""
+    return ('<!-- Winter lessons: unpublished until the details are decided. Placeholder structure only. -->\n'
+            '<template id="winter-lessons-tpl"><section class="light winter" id="winter" aria-labelledby="winter-title" hidden>'
+            '<div class="wrap"><div class="sec-head"><p class="kicker"></p><h2 id="winter-title"></h2><p class="body"></p></div>'
+            '<ul class="winter-points"></ul></div></section></template>\n')
 
 
 def crumb_nav(items):

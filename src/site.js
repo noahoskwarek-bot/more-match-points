@@ -12,8 +12,17 @@ var pm=/[?&]program=(mmp-plus|mmp)(&|$)/.exec(location.search),pe=pm&&document.g
 if(rf&&window.fetch&&window.FormData){var re=document.getElementById('form-err'),sb=rf.querySelector('button[type=submit]');
 rf.addEventListener('submit',function(ev){ev.preventDefault();if(re)re.hidden=true;if(sb){sb.disabled=true;sb.setAttribute('aria-busy','true');}
 fetch(rf.action,{method:'POST',body:new FormData(rf),headers:{'Accept':'application/json'}}).then(function(r){
-if(!r.ok)throw new Error(r.status);location.href='/thanks/';}).catch(function(){
+if(!r.ok)throw new Error(r.status);
+/* analytics: remember the package so /thanks/ can count a "lesson-request-<slug>" event (never blocks the redirect). */
+try{var pk=rf.querySelector('input[name=mmp_program]:checked'),pv=pk?pk.value.replace(/\s*\(.*$/,''):'Single lessons';
+var ps={'f-pkg-single':'single-lessons','f-mmp':'mmp-program','f-mmp-plus':'mmp-plus'}[pk&&pk.id]||'single-lessons';
+sessionStorage.setItem('mmp_lr',JSON.stringify({s:ps,n:pv}));}catch(_){}
+location.href='/thanks/';}).catch(function(){
 if(sb){sb.disabled=false;sb.removeAttribute('aria-busy');}if(re){re.hidden=false;re.focus();}});});}
+/* /thanks/: send the lesson-request conversion once GoatCounter has loaded (skipped quietly if it's blocked). */
+try{var lr=sessionStorage.getItem('mmp_lr');if(lr){sessionStorage.removeItem('mmp_lr');lr=JSON.parse(lr);var gt=0,gf=function(){
+var g=window.goatcounter;if(g&&g.count){try{g.count({path:'lesson-request-'+lr.s,title:'Lesson request: '+lr.n,event:true});}catch(_){}}
+else if(++gt<50)setTimeout(gf,200);};gf();}}catch(_){}
 /* header nav: disclosure dropdowns (desktop) + hamburger panel (mobile). Without JS the plain links stay. */
 var top=document.getElementById('top'),burger=top&&top.querySelector('.burger'),nav=document.getElementById('site-nav');
 if(!top||!burger||!nav)return;

@@ -222,7 +222,8 @@ def foot(sticky=True):
 <p><a class="foot-cta" href="{u()}#request">Request a lesson {ARROW}</a></p>
 <p class="fine">© {year} {e(S['name'])}</p>
 </div></footer>
-{bar}<script>{read('src/site.js')}</script>
+{bar}<script data-goatcounter="https://morematchpoints.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>{read('src/site.js')}</script>
 </body>
 </html>
 '''
